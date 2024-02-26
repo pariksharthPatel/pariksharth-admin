@@ -11,6 +11,7 @@ import {
   Typography,
   Avatar,
   Stack,
+  IconButton,
 } from "@mui/material";
 // hooks
 import useResponsive from "../../../hooks/useResponsive";
@@ -21,9 +22,9 @@ import NavSection from "./SidebarList";
 //
 import { useDispatch, useSelector } from "react-redux";
 import sidebarConfig from "../../../configs/Sidebar.config";
+import Iconify from "../iconify";
 
 // ----------------------------------------------------------------------
-
 
 const StyledAccount = styled("div")(({ theme }) => ({
   display: "flex",
@@ -40,22 +41,20 @@ Sidebar.propTypes = {
   onCloseNav: PropTypes.func,
 };
 
-export default function Sidebar({ openNav, onCloseNav }) {
-// const dispatch = useDispatch()
+export default function Sidebar({ openNav, onCloseNav, onOpenNav }) {
+  // const dispatch = useDispatch()
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive("up", "md");
-  const isMobile = useResponsive("down", "md",'sm');
+  const isMobile = useResponsive("down", "md", "sm");
 
   const { name, role, photoURL } = useSelector((state) => state.auth);
-const isPosPage = !isMobile && pathname ==='/pos'
+  const isPosPage = !isMobile && openNav;
 
-const NAV_WIDTH = isPosPage ? 70: 280;
+  const NAV_WIDTH = isPosPage ? 70 : 280;
 
   useEffect(() => {
     if (openNav) {
-     
-      console.log('open side',openNav,pathname)
       onCloseNav();
     }
     // if(pathname ==='/pos'){
@@ -75,11 +74,19 @@ const NAV_WIDTH = isPosPage ? 70: 280;
         },
       }}
     >
-      {!isPosPage &&<Box sx={{ px: 2.5, py: 3, display: "inline-flex" }}>
+      <Stack
+        direction={"row"}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        sx={{ px: 2.5, py: 3, display: "inline-flex" }}
+      >
         <Logo />
-      </Box>}
-
-  
+        {isDesktop && (
+          <IconButton onClick={openNav ? onCloseNav : onOpenNav}>
+            <Iconify icon={!openNav ? "mdi:menu-open" : "mdi:menu-close"} />
+          </IconButton>
+        )}
+      </Stack>
 
       <NavSection shrink={isPosPage} data={sidebarConfig[role]} />
 
@@ -97,15 +104,17 @@ const NAV_WIDTH = isPosPage ? 70: 280;
     >
       {isDesktop ? (
         <Drawer
-          open
-          variant="permanent"
-          PaperProps={{
-            sx: {
-              width: NAV_WIDTH,
-              bgcolor: "background.default",
-              borderRightStyle: "dashed",
-            },
+          open={openNav}
+          onClose={onCloseNav}
+          ModalProps={{
+            keepMounted: true,
           }}
+          PaperProps={{
+            sx: { width: NAV_WIDTH },
+            bgcolor: "background.default",
+            borderRightStyle: "dashed",
+          }}
+          variant="permanent"
         >
           {renderContent}
         </Drawer>

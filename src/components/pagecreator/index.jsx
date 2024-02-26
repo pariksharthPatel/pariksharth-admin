@@ -55,6 +55,9 @@ const PageCreator = ({
   mobileToolbarActions = [],
   mobileRowActionColumnWidth = null,
   isTableViewOnly = false,
+  refetchCount = 0,
+  isWatchEnabled = false,
+  onWatchFieldChange = [],
 }) => {
   const theme = useTheme();
   const searchFormRef = useRef();
@@ -75,7 +78,7 @@ const PageCreator = ({
       );
     },
     500,
-    [paginationModel, selected]
+    [paginationModel, selected, refetchCount]
   );
   const [modalState, setModalState] = React.useState({
     open: false,
@@ -204,6 +207,8 @@ const PageCreator = ({
           isLoading={isFormLoading}
           selectOptions={selectOptions}
           mode={modalState.mode}
+          isWatchEnabled={isWatchEnabled}
+          onWatchFieldChange={onWatchFieldChange}
         />
         <DeleteModal
           open={modalState.open && modalState.mode === FORMMODE.DELETE}

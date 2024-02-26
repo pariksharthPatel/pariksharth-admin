@@ -26,38 +26,45 @@ export const setSelected = (data = []) => {
 export const openNavBar = () => {
   return {
     type: commonTypes.OPEN_NAVBAR,
-    };
+  };
 };
 
 export const closeNavBar = () => {
   return {
     type: commonTypes.CLOSE_NAVBAR,
-    };
+  };
 };
-
 
 export const openSidebar = () => {
   return {
     type: commonTypes.OPEN_NAVBAR,
-    };
+  };
 };
 
 export const closeSidebar = () => {
   return {
     type: commonTypes.CLOSE_NAVBAR,
-    };
+  };
 };
-
 
 export const shrinkSidebar = () => {
   return {
     type: commonTypes.SHRINK_SIDEBAR,
-    };
+  };
 };
-
 
 export const expandSidebar = () => {
   return {
     type: commonTypes.EXPAND_SIDEBAR,
-    };
-}
+  };
+};
+export const openRoleSelector = () => {
+  return {
+    type: commonTypes.OPEN_ROLE_SELECTOR,
+  };
+};
+export const closeRoleSelector = () => {
+  return {
+    type: commonTypes.CLOSE_ROLE_SELECTOR,
+  };
+};

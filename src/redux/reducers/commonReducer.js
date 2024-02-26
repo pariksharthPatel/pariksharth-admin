@@ -15,6 +15,19 @@ import {
   instituteServiceTypes,
   userGroupTypes,
   employeeTypes,
+  branchTypes,
+  subjectTypes,
+  topicTypes,
+  subTopicTypes,
+  authTypes,
+  qualificationTypes,
+  degreeTypes,
+  boardTypes,
+  goalTypes,
+  stateTypes,
+  aoiTypes,
+  goalExamTypes,
+  questionTypes,
 } from "../types";
 
 const initialState = {
@@ -24,17 +37,35 @@ const initialState = {
     title: "Image Preview",
   },
   users: [],
+
+  institutes: [],
+  instituteservices: [],
+
+  allSubjects: [],
+  subjects: [],
+  topics: [],
+  subTopics: [],
+
+  allQualifications: [],
+  qualifications: [],
+  degrees: [],
+  boards: [],
+
+  allGoals: [],
+  goals: [],
+  states: [],
+  aois: [],
+  goalExams: [],
+
+  questions: [],
+
+  setting: {},
+  selected: [],
   offers: [],
 
   categories: [],
   deals: [],
   expenses: [],
-
-  institutes: [],
-  instituteservices: [],
-
-  setting: {},
-  selected: [],
   currency: [],
   themes: [],
   usergroups: [],
@@ -45,56 +76,112 @@ const initialState = {
     users: null,
   },
   appErrors: [],
+  branches: [],
 
   currentSalon: {},
   isNavOpen: true,
   isSidebarOpen: true,
   isSidebarShrunk: false,
+  isRoleSelectorOpen: false,
 };
 
 const commonReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(commonTypes.OPEN_IMAGE_PREVIEW, (state, action) => {
-      state.imagePreview.open = true;
-      state.imagePreview.title = action.payload.title;
-      state.imagePreview.src = action.payload.src;
+    .addCase(authTypes.LOGIN_USER, (state, action) => {
+      if (action.payload.data.user.roles.length > 0) {
+        state.isRoleSelectorOpen = true;
+      }
     })
-    .addCase(commonTypes.CLOSE_IMAGE_PREVIEW, (state, action) => {
-      state.imagePreview.open = false;
-      state.imagePreview.title = "Image Preview";
-      state.imagePreview.src = undefined;
+    .addCase(authTypes.GET_USER_BY_TOKEN, (state, action) => {
+      if (action.payload.data.roles.length > 0) {
+        // state.isRoleSelectorOpen = true;
+      }
     })
-    .addCase(commonTypes.SHRINK_SIDEBAR, (state, action) => {
-      state.isSidebarShrunk = true;
+    .addCase(commonTypes.OPEN_ROLE_SELECTOR, (state, action) => {
+      state.isRoleSelectorOpen = true;
     })
-    .addCase(commonTypes.EXPAND_SIDEBAR, (state, action) => {
-      state.isSidebarShrunk = false;
+    .addCase(commonTypes.CLOSE_ROLE_SELECTOR, (state, action) => {
+      state.isRoleSelectorOpen = false;
+    })
+
+    .addCase(instituteTypes.GET_INSTITUTE_BY_ID, (state, action) => {
+      state.currentSalon = action.payload.data;
     })
     .addCase(userTypes.GET_USERS, (state, action) => {
       state.users = action.payload.data;
     })
-
-    .addCase(offerTypes.GET_OFFERS, (state, action) => {
-      state.offers = action.payload.data;
-    })
-    .addCase(instituteTypes.GET_INSTITUTE_BY_ID, (state, action) => {
-      state.currentSalon = action.payload.data;
-    })
-    .addCase(currencyTypes.GET_ALL_CURRENCYS, (state, action) => {
-      state.currency = action.payload.data;
-    })
-    .addCase(themeTypes.GET_ALL_THEMES, (state, action) => {
-      state.themes = action.payload.data;
-    })
     .addCase(userTypes.GET_ALL_USERS, (state, action) => {
       state.users = action.payload.data;
     })
-    .addCase(categoryTypes.GET_CATEGORYS, (state, action) => {
-      state.categories = action.payload.data;
+
+    .addCase(subjectTypes.GET_SUBJECTS, (state, action) => {
+      state.subjects = action.payload.data;
     })
-    .addCase(categoryTypes.GET_ALL_CATEGORYS, (state, action) => {
-      state.categories = action.payload.data;
+    .addCase(subjectTypes.GET_ALL_SUBJECTS, (state, action) => {
+      state.allSubjects = action.payload.data;
     })
+
+    .addCase(topicTypes.GET_TOPICS, (state, action) => {
+      state.topics = action.payload.data;
+    })
+    .addCase(topicTypes.GET_ALL_TOPICS, (state, action) => {
+      state.topics = action.payload.data;
+    })
+    .addCase(subTopicTypes.GET_SUB_TOPICS, (state, action) => {
+      state.subTopics = action.payload.data;
+    })
+    .addCase(subTopicTypes.GET_ALL_SUB_TOPICS, (state, action) => {
+      state.subTopics = action.payload.data;
+    })
+    .addCase(qualificationTypes.GET_QUALIFICATIONS, (state, action) => {
+      state.qualifications = action.payload.data;
+    })
+    .addCase(qualificationTypes.GET_ALL_QUALIFICATIONS, (state, action) => {
+      state.allQualifications = action.payload.data;
+    })
+
+    .addCase(degreeTypes.GET_DEGREES, (state, action) => {
+      state.degrees = action.payload.data;
+    })
+    .addCase(degreeTypes.GET_ALL_DEGREES, (state, action) => {
+      state.degrees = action.payload.data;
+    })
+    .addCase(boardTypes.GET_BOARDS, (state, action) => {
+      state.boards = action.payload.data;
+    })
+
+    .addCase(goalTypes.GET_GOALS, (state, action) => {
+      state.goals = action.payload.data;
+    })
+    .addCase(goalTypes.GET_ALL_GOALS, (state, action) => {
+      state.allGoals = action.payload.data;
+    })
+
+    .addCase(stateTypes.GET_STATES, (state, action) => {
+      state.states = action.payload.data;
+    })
+    .addCase(stateTypes.GET_ALL_STATES, (state, action) => {
+      state.states = action.payload.data;
+    })
+    .addCase(aoiTypes.GET_AOIS, (state, action) => {
+      state.aois = action.payload.data;
+    })
+    .addCase(aoiTypes.GET_ALL_AOIS, (state, action) => {
+      state.aois = action.payload.data;
+    })
+    .addCase(goalExamTypes.GET_GOAL_EXAMS, (state, action) => {
+      state.goalExams = action.payload.data;
+    })
+    .addCase(goalExamTypes.GET_ALL_GOAL_EXAMS, (state, action) => {
+      state.goalExams = action.payload.data;
+    })
+
+    .addCase(questionTypes.GET_QUESTIONS, (state, action) => {
+      state.questions = action.payload.data;
+    })
+
+    //misc
+
     .addCase(employeeTypes.GET_EMPLOYEES, (state, action) => {
       state.employees = action.payload.data;
     })
@@ -119,11 +206,46 @@ const commonReducer = createReducer(initialState, (builder) => {
         state.instituteservices = action.payload.data;
       }
     )
+    .addCase(commonTypes.OPEN_IMAGE_PREVIEW, (state, action) => {
+      state.imagePreview.open = true;
+      state.imagePreview.title = action.payload.title;
+      state.imagePreview.src = action.payload.src;
+    })
+    .addCase(commonTypes.CLOSE_IMAGE_PREVIEW, (state, action) => {
+      state.imagePreview.open = false;
+      state.imagePreview.title = "Image Preview";
+      state.imagePreview.src = undefined;
+    })
+    .addCase(commonTypes.SHRINK_SIDEBAR, (state, action) => {
+      state.isSidebarShrunk = true;
+    })
+    .addCase(commonTypes.EXPAND_SIDEBAR, (state, action) => {
+      state.isSidebarShrunk = false;
+    })
+
+    .addCase(categoryTypes.GET_CATEGORYS, (state, action) => {
+      state.categories = action.payload.data;
+    })
+    .addCase(categoryTypes.GET_ALL_CATEGORYS, (state, action) => {
+      state.categories = action.payload.data;
+    })
+    .addCase(currencyTypes.GET_ALL_CURRENCYS, (state, action) => {
+      state.currency = action.payload.data;
+    })
+    .addCase(themeTypes.GET_ALL_THEMES, (state, action) => {
+      state.themes = action.payload.data;
+    })
     .addCase(appErrorTypes.GET_APP_ERRORS, (state, action) => {
       state.appErrors = action.payload.data;
     })
+    .addCase(offerTypes.GET_OFFERS, (state, action) => {
+      state.offers = action.payload.data;
+    })
     .addCase(instituteTypes.GET_INSTITUTES, (state, action) => {
       state.institutes = action.payload.data;
+    })
+    .addCase(branchTypes.GET_BRANCHS, (state, action) => {
+      state.branches = action.payload.data;
     })
     .addCase(settingTypes.GET_SETTING, (state, action) => {
       state.setting = action.payload.data;

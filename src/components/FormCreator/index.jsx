@@ -16,6 +16,8 @@ const FormCreator = React.forwardRef(
       formData = {},
       isLoading,
       isSearchForm = false,
+      isWatchEnabled = false,
+      onWatchFieldChange = () => {},
     },
     formRef
   ) => {
@@ -27,11 +29,32 @@ const FormCreator = React.forwardRef(
     const {
       control,
       handleSubmit,
+      watch,
+      reset,
       formState: { errors },
     } = methods;
 
     useSearchForm({ isSearchForm: isSearchForm, formRef, control, formFields });
     console.log("form errors", errors, formData);
+
+    // useEffect(() => {
+    //   if (watchFields.length > 0) {
+    //     onWatchFieldChange(fieldsToWatch);
+    //   }
+    // }, [fieldsToWatch]);
+
+    React.useEffect(() => {
+      let subscription;
+      if (isWatchEnabled)
+        subscription = watch((value, { name, type }) =>
+          onWatchFieldChange(value)
+        );
+      return () => {
+        reset();
+        subscription && subscription.unsubscribe();
+      };
+    }, [watch, isWatchEnabled]);
+
     return (
       <FormProvider>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -44,8 +67,8 @@ const FormCreator = React.forwardRef(
             }}
           >
             {formFields.map((el) => {
-              if(el.hidden){
-                return
+              if (el.hidden) {
+                return;
               }
               if (el.hideAt && el.hideAt === mode) {
                 return;

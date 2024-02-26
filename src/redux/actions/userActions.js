@@ -34,7 +34,7 @@ export const addUser = ({ data, callBack }) => {
       method: REQUESTMETHOD.POST,
       data: data,
       url: userApi.ADD_USER,
-      
+
       enableMessages: true,
       successMessage: "User Added Successfully",
       failMessage: "Failed to add User",
@@ -44,13 +44,16 @@ export const addUser = ({ data, callBack }) => {
 };
 
 export const editUser = ({ data, callBack }) => {
+  if (data.instituteId) {
+    data.instituteId = data.instituteId._id;
+  }
   return {
     type: userTypes.UPDATE_USER,
     request: {
       method: REQUESTMETHOD.PATCH,
       data: data,
       url: userApi.UPDATE_USER,
-      
+
       enableMessages: true,
       successMessage: "User Updated Successfully",
       failMessage: "Failed to update User",

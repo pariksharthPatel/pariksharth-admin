@@ -1,5 +1,5 @@
 import { userApi } from "../../API";
-import { authTypes, REQUESTMETHOD } from "../types";
+import { authTypes, commonTypes, REQUESTMETHOD } from "../types";
 
 export const loginUser = ({ email, password }, callBack) => {
   return {
@@ -24,11 +24,24 @@ export const getUserByToken = () => {
     type: authTypes.GET_USER_BY_TOKEN,
     request: {
       method: REQUESTMETHOD.GET,
-    
+
       enableMessages: false,
       url: userApi.GET_USER_BY_TOKEN,
-    
-      
+    },
+  };
+};
+export const setActiveUserRole = ({ userId, activeRole, callBack }) => {
+  return {
+    type: authTypes.SET_ACTIVE_ROLE,
+    request: {
+      method: REQUESTMETHOD.POST,
+      data: { userId, activeRole },
+
+      enableMessages: true,
+      url: userApi.SET_ACTIVE_ROLE,
+      callBack,
+      successMessage: "Role changed successfully",
+      failMessage: "Failed To change role",
     },
   };
 };

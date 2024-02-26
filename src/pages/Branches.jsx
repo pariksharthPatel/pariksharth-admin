@@ -6,39 +6,36 @@ import PageCreator from "../components/pagecreator";
 import { DATETIMEFORMAT, ROLES } from "../constants";
 import useResponsive from "../hooks/useResponsive";
 import {
-  addUser,
-  deleteUser,
-  editUser,
-  getUsers,
-} from "../redux/actions/userActions";
+  addBranch,
+  deleteBranch,
+  editBranch,
+  getBranchs,
+} from "../redux/actions/branchActions";
 import { loadingSelector } from "../redux/reducers/loadingReducer";
-import { userTypes } from "../redux/types";
+import { branchTypes } from "../redux/types";
 import { addTableColumnMinWidth } from "../utils/addTableColumnMinWidth";
 import { useEffectOnce } from "react-use";
-import {
-  getAllInstitutes,
-  getInstitutes,
-} from "../redux/actions/instituteActions";
-import { FORMMODE } from "../enums";
+import { getAllInstitutes } from "../redux/actions/instituteActions";
 
-const Users = () => {
+const Branches = () => {
   const dispatch = useDispatch();
+
   const isMobile = useResponsive("down", "sm");
   const institutes = useSelector((state) => state.common.institutes);
-  console.log("institutes", institutes);
   const { instituteId, activeRole } = useSelector((state) => state.auth);
+
   // const dispatch = useDispatch();
 
-  const tableData = useSelector((state) => state.common.users);
+  const tableData = useSelector((state) => state.common.branches);
 
   const isTableLoading = useSelector((state) =>
-    loadingSelector(state, userTypes.GET_PLATFORMS)
+    loadingSelector(state, branchTypes.GET_CURRENCYS)
   );
   const isFormLoading = useSelector((state) =>
     loadingSelector(state, [
-      userTypes.ADD_PLATFORM,
-      userTypes.UPDATE_PLATFORM,
-      userTypes.DELETE_PLATFORM,
+      branchTypes.ADD_CURRENCY,
+      branchTypes.UPDATE_CURRENCY,
+      branchTypes.DELETE_CURRENCY,
     ])
   );
 
@@ -51,111 +48,60 @@ const Users = () => {
       })
     );
   }, []);
-  console.log("institutes.data", institutes);
   return (
     <div>
       <PageCreator
-        screenName={"Users"}
+        screenName={"Branches"}
         tableHeaders={tableHeaders(isMobile)}
         tableData={tableData?.data}
-        formFields={formFields(instituteId, activeRole)}
-        searchFields={searchFields}
+        formFields={formFields(activeRole, instituteId)}
         defaultFormData={{
           isActive: true,
-          roles: [],
-          services: [],
         }}
         dialogWidth="lg"
         isLoading={isTableLoading}
         isFormLoading={isFormLoading}
         totalCount={tableData?.totalCount}
         selectOptions={{
-          roles: Object.keys(ROLES)
-            .filter((r) => r !== ROLES.SUPERADMIN)
-            .map((el) => ({ text: el, value: el })),
           instituteId: institutes,
         }}
         // onFormSubmit={onFormSubmit}
-        onAdd={addUser}
-        onEdit={editUser}
-        onDelete={deleteUser}
-        getTableData={getUsers}
+        onAdd={addBranch}
+        onEdit={editBranch}
+        onDelete={deleteBranch}
+        getTableData={getBranchs}
         deleteTitle="name"
-        selectable={!isMobile}
+        selectable={false}
         mobileRowActionColumnWidth={120}
       />
     </div>
   );
 };
 
-export default Users;
+export default Branches;
 
-const formFields = (instituteId, activeRole) => [
-  {
-    type: "select",
-
-    name: "roles",
-    label: "Choose Role ",
-    placeholder: "Choose Role",
-    optionLabel: "text",
-    optionValue: "value",
-    hasExternalOptions: true,
-    required: true,
-    disabled: false,
-    readOnly: false,
-    multiple: true,
-    width: 4,
-    mobileWidth: 12,
-  },
-
+const formFields = (activeRole, instituteId) => [
   {
     type: "text",
     name: "name",
-    label: "User Name",
-    placeholder: "Enter User Name",
-    required: true,
-    disabled: false,
-    readOnly: false,
-    width: 6,
-  },
-
-  {
-    type: "text",
-    name: "email",
-    label: "User Email",
-    placeholder: "Enter User Email",
-    required: true,
-    disabled: false,
-    readOnly: false,
-    width: 6,
-  },
-  {
-    type: "password",
-    name: "password",
-    hideAt: FORMMODE.EDIT,
-    label: "User Password",
-    placeholder: "Enter User Password",
+    label: "Branch Name",
+    placeholder: "Enter Branch Name",
     required: true,
     disabled: false,
     readOnly: false,
     width: 4,
   },
-  // {
-  //   type: "select",
-  //   name: "roles",
-
-  //   label: "Choose Role ",
-  //   placeholder: "Choose Role",
-  //   optionLabel: "text",
-  //   optionValue: "value",
-  //   hasExternalOptions: true,
-  //   required: true,
-  //   disabled: false,
-  //   readOnly: false,
-  //   multiple: true,
-  //   width: 4,
-  //   mobileWidth: 12,
-  // },
+  {
+    type: "text",
+    name: "contactNumber",
+    label: "Contact Number",
+    placeholder: "Enter Contact Number",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
   {
     type: "select",
     hidden: Boolean(instituteId) && activeRole !== ROLES.SUPERADMIN,
@@ -190,39 +136,18 @@ const searchFields = [
   {
     type: "text",
     name: "name",
-    label: "User Name",
-    placeholder: "Enter User Name",
+    label: "Branch Name",
+    placeholder: "Enter Branch Name",
     required: false,
     disabled: false,
     readOnly: false,
     width: 6,
-    clearable: true,
-  },
-  {
-    type: "select",
-    // hidden: Boolean(instituteId),
-
-    name: "instituteId",
-    label: "Choose Institute ",
-    placeholder: "Choose Institute",
-    optionLabel: "name",
-    optionValue: "_id",
-    hasExternalOptions: true,
-    required: false,
-    disabled: false,
-    readOnly: false,
-    multiple: false,
-    width: 6,
-    mobileWidth: 12,
-    clearable: true,
-    hasEmptyOption: true,
   },
 ];
-
 const tableHeaders = (isMobile) => [
   {
     field: "name",
-    headerName: "User Name",
+    headerName: "Branch Name",
     type: "string",
     editable: false,
     flex: 1,
@@ -230,33 +155,25 @@ const tableHeaders = (isMobile) => [
     ...addTableColumnMinWidth(isMobile, 100),
   },
   {
-    field: "email",
-    headerName: "User Email",
+    field: "instituteId",
+    headerName: "Institute",
     type: "string",
     editable: false,
     flex: 1,
-    ...addTableColumnMinWidth(isMobile, 70),
+
+    ...addTableColumnMinWidth(isMobile, 100),
+    valueGetter: (params) => params.value.name,
   },
   {
-    field: "activeRole",
-    headerName: "User Role",
+    field: "contactNumber",
+    headerName: "Contact Number",
     type: "string",
     editable: false,
     flex: 1,
-    ...addTableColumnMinWidth(isMobile, 70),
-    valueGetter: (params) => params.value,
+
+    ...addTableColumnMinWidth(isMobile, 100),
   },
 
-  {
-    field: "instituteId",
-    headerName: "Institute Name",
-    type: "string",
-    editable: false,
-    flex: 1,
-    ...addTableColumnMinWidth(isMobile, 70),
-    // valueGetter: (params) => params.name,
-    valueFormatter: ({ value }) => value?.name || "-",
-  },
   {
     field: "createdBy",
     headerName: "Created By",

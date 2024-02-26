@@ -21,12 +21,13 @@ export const authReducer = createReducer(initialState, (builder) =>
         accessToken: action.payload.data.accessToken,
         isLogged: true,
         ...action.payload.data.user,
-        ...(Array.isArray(action.payload.data.user.role) &&
-        action.payload.data.user.role.length === 1
-          ? {
-              role: action.payload.data.user.role[0],
-            }
-          : { role: "" }),
+        role: action.payload.data.user.activeRole,
+        // ...(Array.isArray(action.payload.data.user.role) &&
+        // action.payload.data.user.role.length === 1
+        //   ? {
+        //       role: action.payload.data.user.role[0],
+        //     }
+        //   : { role: "" }),
       };
       return state;
     })
@@ -34,12 +35,14 @@ export const authReducer = createReducer(initialState, (builder) =>
       state = {
         ...initialState,
         ...action.payload.data,
-        ...(Array.isArray(action.payload.data.role) &&
-        action.payload.data.role.length === 1
-          ? {
-              role: action.payload.data.role[0],
-            }
-          : { role: "" }),
+        isLogged: true,
+        role: action.payload.data.activeRole,
+        // ...(Array.isArray(action.payload.data.role) &&
+        // action.payload.data.role.length === 1
+        //   ? {
+        //       role: action.payload.data.role[0],
+        //     }
+        //   : { role: "" }),
       };
       return state;
     })

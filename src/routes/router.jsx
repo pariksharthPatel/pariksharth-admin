@@ -31,6 +31,19 @@ import Employees from "../pages/Employees";
 import { getInstituteById } from "../redux/actions/instituteActions";
 import { useEffect } from "react";
 import POS from "../pages/POS";
+import Branches from "../pages/Branches";
+import Subject from "../pages/Subject";
+import Topic from "../pages/Topics";
+import SubTopic from "../pages/SubTopics";
+import Qualification from "../pages/Qualification";
+import Degree from "../pages/Degree";
+import Board from "../pages/Board";
+import Goal from "../pages/Goal";
+import State from "../pages/GoalState";
+import GoalAoi from "../pages/AOIS";
+import GoalExam from "../pages/GoalExam ";
+import Question from "../pages/Question";
+
 export function Router() {
   const dispatch = useDispatch();
   const { role, instituteId } = useSelector((state) => state.auth);
@@ -67,6 +80,10 @@ export function Router() {
           element: <Institutes />,
         },
         {
+          path: "/branches",
+          element: <Branches />,
+        },
+        {
           path: "/users",
           element: <Users />,
         },
@@ -89,6 +106,62 @@ export function Router() {
 
           path: "/categories",
           element: <Categories />,
+        },
+        {
+          errorElement: <ErrorBoundary />,
+
+          path: "/subjects",
+          exact: true,
+          element: <Subject />,
+        },
+        {
+          errorElement: <ErrorBoundary />,
+
+          path: "/qualification",
+          exact: true,
+          element: <Qualification />,
+        },
+        {
+          path: "/degree",
+          exact: true,
+          element: <Degree />,
+        },
+        {
+          path: "/board",
+          exact: true,
+          element: <Board />,
+        },
+        {
+          errorElement: <ErrorBoundary />,
+
+          path: "/goal",
+          exact: true,
+          element: <Goal />,
+        },
+        {
+          path: "/state",
+          exact: true,
+          element: <State />,
+        },
+        {
+          path: "/aoi",
+          exact: true,
+          element: <GoalAoi />,
+        },
+        {
+          path: "/goalexam",
+          exact: true,
+          element: <GoalExam />,
+        },
+        {
+          path: "/topic",
+          exact: true,
+          element: <Topic />,
+        },
+        {
+          path: "/subtopic",
+          exact: true,
+          element: <SubTopic />,
         },
 
         {
@@ -113,9 +186,13 @@ export function Router() {
           element: <Dashboard />,
         },
         {
-          path: "/pos",
-          element: <POS />,
+          path: "/branches",
+          element: <Branches />,
         },
+        // {
+        //   path: "/pos",
+        //   element: <POS />,
+        // },
 
         {
           path: "/users",
@@ -124,46 +201,108 @@ export function Router() {
         {
           errorElement: <ErrorBoundary />,
 
-          path: "/deals",
-          element: <Deals />,
+          path: "/subjects",
+          exact: true,
+          element: <Subject />,
         },
         {
-          path: "/offers",
-          element: <Offers />,
-          errorElement: <ErrorBoundary />,
-        },
-
-        {
-          errorElement: <ErrorBoundary />,
-
-          path: "/categories",
-          element: <Categories />,
+          path: "/topic",
+          exact: true,
+          element: <Topic />,
         },
         {
-          errorElement: <ErrorBoundary />,
-
-          path: "/services",
-          element: <SalonServices />,
+          path: "/subtopic",
+          exact: true,
+          element: <SubTopic />,
         },
 
         {
           errorElement: <ErrorBoundary />,
 
-          path: "/usergroups",
-          element: <UserGroups />,
+          path: "/qualification",
+          exact: true,
+          element: <Qualification />,
+        },
+        {
+          path: "/degree",
+          exact: true,
+          element: <Degree />,
+        },
+        {
+          path: "/board",
+          exact: true,
+          element: <Board />,
         },
         {
           errorElement: <ErrorBoundary />,
 
-          path: "/employees",
-          element: <Employees />,
+          path: "/goal",
+          exact: true,
+          element: <Goal />,
         },
         {
-          errorElement: <ErrorBoundary />,
-
-          path: "/expenses",
-          element: <Expenses />,
+          path: "/state",
+          exact: true,
+          element: <State />,
         },
+        {
+          path: "/aoi",
+          exact: true,
+          element: <GoalAoi />,
+        },
+        {
+          path: "/goalexam",
+          exact: true,
+          element: <GoalExam />,
+        },
+        {
+          path: "/question",
+          exact: true,
+          element: <Question />,
+        },
+        // {
+        //   errorElement: <ErrorBoundary />,
+
+        //   path: "/deals",
+        //   element: <Deals />,
+        // },
+        // {
+        //   path: "/offers",
+        //   element: <Offers />,
+        //   errorElement: <ErrorBoundary />,
+        // },
+
+        // {
+        //   errorElement: <ErrorBoundary />,
+
+        //   path: "/categories",
+        //   element: <Categories />,
+        // },
+        // {
+        //   errorElement: <ErrorBoundary />,
+
+        //   path: "/services",
+        //   element: <SalonServices />,
+        // },
+
+        // {
+        //   errorElement: <ErrorBoundary />,
+
+        //   path: "/usergroups",
+        //   element: <UserGroups />,
+        // },
+        // {
+        //   errorElement: <ErrorBoundary />,
+
+        //   path: "/employees",
+        //   element: <Employees />,
+        // },
+        // {
+        //   errorElement: <ErrorBoundary />,
+
+        //   path: "/expenses",
+        //   element: <Expenses />,
+        // },
 
         {
           errorElement: <ErrorBoundary />,

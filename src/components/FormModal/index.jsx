@@ -30,6 +30,8 @@ const FormModal = ({
   formData = {},
   isLoading,
   selectOptions,
+  isWatchEnabled = false,
+  onWatchFieldChange = () => {},
 }) => {
   const formRef = React.useRef();
   const theme = useTheme();
@@ -79,6 +81,8 @@ const FormModal = ({
           formData={formData}
           isLoading={isLoading}
           selectOptions={selectOptions}
+          isWatchEnabled={isWatchEnabled}
+          onWatchFieldChange={onWatchFieldChange}
         />
       </DialogContent>
       <Divider />

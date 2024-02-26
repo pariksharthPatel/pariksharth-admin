@@ -9,3 +9,8 @@ export const ROLES = {
 
   TEACHER: "TEACHER",
 };
+export const AnsType = {
+  SINGLE: "SINGLE",
+  MULTIPLE: "MULTIPLE",
+  INRANGEANSWER: "INRANGEANSWER",
+};
