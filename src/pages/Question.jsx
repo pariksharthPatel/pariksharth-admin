@@ -15,15 +15,10 @@ import { questionTypes } from "../redux/types";
 import { addTableColumnMinWidth } from "../utils/addTableColumnMinWidth";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
-import Iconify from "../components/layout/iconify";
 import useDisclosure from "../hooks/useDisclosure";
-import useLoading from "../hooks/useLoading";
 import { useEffectOnce } from "react-use";
-import {
-  getAllMySubjects,
-  getAllSubjects,
-} from "../redux/actions/subjectActions";
-import { getAllMyGoalExams } from "../redux/actions/goalExamActions";
+import { getAllMySubjects } from "../redux/actions/subjectActions";
+import { getAllMyGoals } from "../redux/actions/goalActions";
 
 const Question = () => {
   const [refetchCount, setRefetchCount] = React.useState(0);
@@ -38,7 +33,7 @@ const Question = () => {
   const {
     questions: tableData,
     allSubjects,
-    goalExams,
+    allGoals,
   } = useSelector((state) => state.common);
 
   const isTableLoading = useSelector((state) =>
@@ -52,23 +47,11 @@ const Question = () => {
     ])
   );
 
-  const ImportButton = () => {
-    return (
-      <Button
-        variant="outlined"
-        startIcon={<Iconify icon="gala:add" />}
-        onClick={onOpen}
-      >
-        Import Questions
-      </Button>
-    );
-  };
-
   useEffectOnce(() => {
     dispatch(getAllMySubjects());
-    dispatch(getAllMyGoalExams());
+    dispatch(getAllMyGoals());
   }, []);
-  console.log("goalExams", goalExams);
+  console.log("allGoals", allGoals);
   const formFields = [
     {
       type: "text",
@@ -126,6 +109,18 @@ const Question = () => {
       readOnly: false,
       width: 12,
     },
+    ...["a", "b", "c", "d"].map((el) => {
+      return {
+        type: "text",
+        name: el,
+        label: `${el} Values`,
+        placeholder: `Enter ${el} Values`,
+        required: false,
+        disabled: false,
+        readOnly: false,
+        width: 3,
+      };
+    }),
     {
       type: "select",
       name: "subject",
@@ -150,7 +145,8 @@ const Question = () => {
       optionLabel: "name",
       optionValue: "_id",
       hasExternalOptions: true,
-      required: true,
+      required: false,
+
       disabled: false,
       readOnly: false,
       multiple: false,
@@ -166,10 +162,11 @@ const Question = () => {
       optionLabel: "name",
       optionValue: "_id",
       hasExternalOptions: true,
-      required: true,
       disabled: false,
       readOnly: false,
       multiple: false,
+      required: false,
+
       width: 3,
       mobileWidth: 4,
     },
@@ -199,13 +196,7 @@ const Question = () => {
       width: 4,
     },
   ];
-  console.log(
-    "topic options",
-    allSubjects
-      ?.filter((el) => el._id === watchData.subject)
-      ?.map((d) => d.topics)
-      .flat(Infinity) || []
-  );
+
   return (
     <div>
       <PageCreator
@@ -218,6 +209,8 @@ const Question = () => {
         defaultFormData={{
           isActive: true,
           tergetedExams: [],
+          ansType: "SINGLE",
+          ans: "a",
         }}
         dialogWidth="lg"
         isLoading={isTableLoading}
@@ -240,7 +233,7 @@ const Question = () => {
                   .map((sub) => sub.subTopics)
               )
               .flat(Infinity) || [],
-          tergetedExams: goalExams,
+          tergetedExams: allGoals,
         }}
         // onFormSubmit={onFormSubmit}
         onAdd={addQuestion}
@@ -254,6 +247,11 @@ const Question = () => {
         onWatchFieldChange={(data) => {
           setWatchData(data);
         }}
+        // {...(ROLES.FACULTY === activeRole && {
+        //   onAdd: addQuestion,
+        //   onEdit: editQuestion,
+        //   onDelete: deleteQuestion,
+        // })}
       />
     </div>
   );
@@ -322,6 +320,17 @@ const searchFields = [
     readOnly: false,
     width: 3,
   },
+  {
+    type: "text",
+    name: "filtered",
+    label: "Filter Values",
+    placeholder: "Enter Filter Values",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 3,
+  },
+
   {
     type: "select",
     name: "subject",

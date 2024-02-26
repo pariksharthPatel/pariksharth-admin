@@ -23,6 +23,7 @@ export const addGoal = ({ data, callBack }) => {
       data: data,
       url: goalApi.ADD_GOAL,
       enableMessages: true,
+      isFormData: true,
       successMessage: "Goal Added Successfully",
       failMessage: "Failed to add Goal",
       callBack,
@@ -54,6 +55,7 @@ export const editGoal = ({ data, callBack }) => {
       method: REQUESTMETHOD.PATCH,
       data: data,
       url: goalApi.UPDATE_GOAL,
+      isFormData: true,
 
       enableMessages: true,
       successMessage: "Goal Updated Successfully",
@@ -87,6 +89,18 @@ export const getAllGoals = () => {
 
       enableMessages: false,
       url: goalApi.GET_ALL_GOALS,
+    },
+  };
+};
+
+export const getAllMyGoals = () => {
+  return {
+    type: goalTypes.GET_ALL_GOALS,
+    request: {
+      method: REQUESTMETHOD.GET,
+
+      enableMessages: false,
+      url: goalApi.GET_ALL_MY_GOALS,
     },
   };
 };

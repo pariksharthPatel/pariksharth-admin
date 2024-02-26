@@ -65,7 +65,7 @@ export const deleteQuestion = ({ data, callBack }) => {
   };
 };
 
-export const getAllCategories = () => {
+export const getAllQuestions = () => {
   return {
     type: questionTypes.GET_ALL_QUESTIONS,
     request: {

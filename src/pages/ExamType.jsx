@@ -5,26 +5,23 @@ import PageCreator from "../components/pagecreator";
 import { DATETIMEFORMAT } from "../constants";
 import useResponsive from "../hooks/useResponsive";
 import {
-  addDegree,
-  deleteDegree,
-  editDegree,
-  getDegrees,
-} from "../redux/actions/degreeActions";
+  addExamType,
+  deleteExamType,
+  editExamType,
+  getExamTypes,
+} from "../redux/actions/examTypeActions";
 import { loadingSelector } from "../redux/reducers/loadingReducer";
-import { degreeTypes } from "../redux/types";
+import { examTypeTypes } from "../redux/types";
 import { addTableColumnMinWidth } from "../utils/addTableColumnMinWidth";
-import { useLocation, useNavigate } from "react-router-dom";
 
-const Degree = () => {
+const ExamTypes = () => {
   const isMobile = useResponsive("down", "sm");
-  const navigate = useNavigate();
-  const location = useLocation();
-  console.log("location", location);
 
+  // const dispatch = useDispatch();
   const tableHeaders = [
     {
       field: "name",
-      headerName: "Degree Name",
+      headerName: "ExamType Name",
       type: "string",
       editable: false,
       flex: 1,
@@ -50,23 +47,22 @@ const Degree = () => {
     },
   ];
 
-  const tableData = useSelector((state) => state.common.degrees);
+  const tableData = useSelector((state) => state.common.examTypes);
 
   const isTableLoading = useSelector((state) =>
-    loadingSelector(state, degreeTypes.GET_DEGREES)
+    loadingSelector(state, examTypeTypes.GET_EXAM_TYPES)
   );
   const isFormLoading = useSelector((state) =>
     loadingSelector(state, [
-      degreeTypes.ADD_DEGREE,
-      degreeTypes.UPDATE_DEGREE,
-      degreeTypes.DELETE_DEGREE,
+      examTypeTypes.ADD_EXAM_TYPE,
+      examTypeTypes.UPDATE_EXAM_TYPE,
+      examTypeTypes.DELETE_EXAM_TYPE,
     ])
   );
-
   return (
     <div>
       <PageCreator
-        screenName={"Degree"}
+        screenName={"ExamType"}
         tableHeaders={tableHeaders}
         tableData={tableData?.data}
         formFields={formFields}
@@ -79,10 +75,10 @@ const Degree = () => {
         isFormLoading={isFormLoading}
         totalCount={tableData?.totalCount}
         // onFormSubmit={onFormSubmit}
-        onAdd={addDegree}
-        onEdit={editDegree}
-        onDelete={deleteDegree}
-        getTableData={getDegrees}
+        onAdd={addExamType}
+        onEdit={editExamType}
+        onDelete={deleteExamType}
+        getTableData={getExamTypes}
         deleteTitle="name"
         selectable={!isMobile}
         mobileRowActionColumnWidth={120}
@@ -91,18 +87,18 @@ const Degree = () => {
   );
 };
 
-export default Degree;
+export default ExamTypes;
 
 const formFields = [
   {
     type: "text",
     name: "name",
-    label: "Degree Name",
-    placeholder: "Enter Degree Name",
+    label: "ExamType Name",
+    placeholder: "Enter ExamType Name",
     required: true,
     disabled: false,
     readOnly: false,
-    width: 4,
+    width: 6,
   },
 
   {
@@ -120,8 +116,8 @@ const searchFields = [
   {
     type: "text",
     name: "name",
-    label: "Degree Name",
-    placeholder: "Enter Degree Name",
+    label: "ExamType Name",
+    placeholder: "Enter ExamType Name",
     required: false,
     disabled: false,
     readOnly: false,

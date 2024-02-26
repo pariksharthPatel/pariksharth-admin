@@ -25,9 +25,11 @@ import {
   boardTypes,
   goalTypes,
   stateTypes,
-  aoiTypes,
-  goalExamTypes,
   questionTypes,
+  languageTypes,
+  examTypeTypes,
+  testSeriesTypes,
+  testTypes,
 } from "../types";
 
 const initialState = {
@@ -46,18 +48,17 @@ const initialState = {
   topics: [],
   subTopics: [],
 
-  allQualifications: [],
-  qualifications: [],
-  degrees: [],
-  boards: [],
-
   allGoals: [],
   goals: [],
   states: [],
-  aois: [],
-  goalExams: [],
+  languages: [],
+  examTypes: [],
+  degrees: [],
+  boards: [],
 
   questions: [],
+  testSeries: [],
+  tests: [],
 
   setting: {},
   selected: [],
@@ -163,21 +164,37 @@ const commonReducer = createReducer(initialState, (builder) => {
     .addCase(stateTypes.GET_ALL_STATES, (state, action) => {
       state.states = action.payload.data;
     })
-    .addCase(aoiTypes.GET_AOIS, (state, action) => {
-      state.aois = action.payload.data;
+    .addCase(examTypeTypes.GET_EXAM_TYPES, (state, action) => {
+      state.examTypes = action.payload.data;
     })
-    .addCase(aoiTypes.GET_ALL_AOIS, (state, action) => {
-      state.aois = action.payload.data;
+    .addCase(examTypeTypes.GET_ALL_EXAM_TYPES, (state, action) => {
+      state.examTypes = action.payload.data;
     })
-    .addCase(goalExamTypes.GET_GOAL_EXAMS, (state, action) => {
-      state.goalExams = action.payload.data;
+    .addCase(languageTypes.GET_LANGUAGES, (state, action) => {
+      state.languages = action.payload.data;
     })
-    .addCase(goalExamTypes.GET_ALL_GOAL_EXAMS, (state, action) => {
-      state.goalExams = action.payload.data;
+    .addCase(languageTypes.GET_ALL_LANGUAGES, (state, action) => {
+      state.languages = action.payload.data;
     })
 
     .addCase(questionTypes.GET_QUESTIONS, (state, action) => {
       state.questions = action.payload.data;
+    })
+
+    .addCase(questionTypes.GET_ALL_QUESTIONS, (state, action) => {
+      state.questions = action.payload.data;
+    })
+    .addCase(testSeriesTypes.GET_TEST_SERIESS, (state, action) => {
+      state.testSeries = action.payload.data;
+    })
+    .addCase(testSeriesTypes.GET_ALL_TEST_SERIESS, (state, action) => {
+      state.testSeries = action.payload.data;
+    })
+    .addCase(testTypes.GET_TESTS, (state, action) => {
+      state.tests = action.payload.data;
+    })
+    .addCase(testTypes.GET_ALL_TESTS, (state, action) => {
+      state.tests = action.payload.data;
     })
 
     //misc

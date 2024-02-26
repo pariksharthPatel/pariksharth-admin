@@ -14,3 +14,8 @@ export const AnsType = {
   MULTIPLE: "MULTIPLE",
   INRANGEANSWER: "INRANGEANSWER",
 };
+
+export const EXAMTYPE = {
+  OMR: "OMR",
+  CBT: "CBT",
+};

@@ -363,8 +363,12 @@ const PageCreator = ({
                         label: "Actions",
                         flex: 1,
                         getActions: (params) => [
-                          <EditActions data={params.row} />,
-                          <DeleteActions data={params.row} />,
+                          ...(onEdit
+                            ? [<EditActions data={params.row} />]
+                            : []),
+                          ...(onDelete
+                            ? [<DeleteActions data={params.row} />]
+                            : []),
                           ...rowActions.map((El) => <El data={params.row} />),
                         ],
 

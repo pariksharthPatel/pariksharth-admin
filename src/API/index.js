@@ -123,37 +123,28 @@ export const subTopicApi = {
   DELETE_SUB_TOPIC: "/subject/subtopic",
 };
 
-export const qualificationApi = {
-  GET_QUALIFICATIONS: "/qualification",
-  GET_ALL_QUALIFICATIONS: "/qualification/all",
-
-  ADD_QUALIFICATION: "/qualification",
-  UPDATE_QUALIFICATION: "/qualification",
-  DELETE_QUALIFICATION: "/qualification",
-  IMPORT_QUALIFICATION: "/qualification/import",
-};
-
 export const degreeApi = {
-  GET_DEGREES: "/qualification/degree",
-  GET_ALL_DEGREES: "/qualification/degree/all",
+  GET_DEGREES: "/degree",
+  GET_ALL_DEGREES: "/degree/all",
 
-  ADD_DEGREE: "/qualification/degree",
-  UPDATE_DEGREE: "/qualification/degree",
-  DELETE_DEGREE: "/qualification/degree",
+  ADD_DEGREE: "/degree",
+  UPDATE_DEGREE: "/degree",
+  DELETE_DEGREE: "/degree",
 };
 
 export const boardApi = {
-  GET_BOARDS: "/qualification/board",
-  GET_ALL_BOARDS: "/qualification/board/all",
+  GET_BOARDS: "/board",
+  GET_ALL_BOARDS: "/board/all",
 
-  ADD_BOARD: "/qualification/board",
-  UPDATE_BOARD: "/qualification/board",
-  DELETE_BOARD: "/qualification/board",
+  ADD_BOARD: "/board",
+  UPDATE_BOARD: "/board",
+  DELETE_BOARD: "/board",
 };
 
 export const goalApi = {
   GET_GOALS: "/goal",
   GET_ALL_GOALS: "/goal/all",
+  GET_ALL_MY_GOALS: "/goal/all/myGoals",
 
   ADD_GOAL: "/goal",
   UPDATE_GOAL: "/goal",
@@ -161,32 +152,6 @@ export const goalApi = {
   IMPORT_GOAL: "/goal/import",
 };
 
-export const stateApi = {
-  GET_STATES: "/goal/state",
-  GET_ALL_STATES: "/goal/state/all",
-
-  ADD_STATE: "/goal/state",
-  UPDATE_STATE: "/goal/state",
-  DELETE_STATE: "/goal/state",
-};
-
-export const aoiApi = {
-  GET_AOIS: "/goal/aoi",
-  GET_ALL_AOIS: "/goal/aoi/all",
-
-  ADD_AOI: "/goal/aoi",
-  UPDATE_AOI: "/goal/aoi",
-  DELETE_AOI: "/goal/aoi",
-};
-export const goalExamApi = {
-  GET_GOAL_EXAMS: "/goal/exam",
-  GET_ALL_GOAL_EXAMS: "/goal/exam/all",
-  GET_ALL_MY_GOAL_EXAMS: "/goal/exam/all/myExams",
-
-  ADD_GOAL_EXAM: "/goal/exam",
-  UPDATE_GOAL_EXAM: "/goal/exam",
-  DELETE_GOAL_EXAM: "/goal/exam",
-};
 export const questionApi = {
   GET_QUESTIONS: "/question",
   GET_ALL_QUESTIONS: "/question/all",
@@ -194,6 +159,52 @@ export const questionApi = {
   ADD_QUESTION: "/question",
   UPDATE_QUESTION: "/question",
   DELETE_QUESTION: "/question",
+};
+
+export const stateApi = {
+  GET_STATES: "/state",
+  GET_ALL_STATES: "/state/all",
+
+  ADD_STATE: "/state",
+  UPDATE_STATE: "/state",
+  DELETE_STATE: "/state",
+};
+
+export const testSeriesApi = {
+  GET_TEST_SERIESS: "/testseries",
+  GET_ALL_TEST_SERIESS: "/testseries/all",
+
+  ADD_TEST_SERIES: "/testseries",
+  UPDATE_TEST_SERIES: "/testseries",
+  DELETE_TEST_SERIES: "/testseries",
+};
+export const testApi = {
+  GET_TESTS: "/test",
+  GET_ALL_TESTS: "/test/all",
+  GET_ALL_TEST_QUESTIONS: "/test/questions/all",
+  GET_TEST_QUESTIONS: "/test/questions",
+
+  ADD_TEST: "/test",
+  ADD_TEST_QUESTIONS: "/test/questions",
+
+  UPDATE_TEST: "/test",
+  DELETE_TEST: "/test",
+};
+export const languageApi = {
+  GET_LANGUAGES: "/language",
+  GET_ALL_LANGUAGES: "/language/all",
+
+  ADD_LANGUAGE: "/language",
+  UPDATE_LANGUAGE: "/language",
+  DELETE_LANGUAGE: "/language",
+};
+export const examTypeApi = {
+  GET_EXAM_TYPES: "/examtype",
+  GET_ALL_EXAM_TYPES: "/examtype/all",
+
+  ADD_EXAM_TYPE: "/examtype",
+  UPDATE_EXAM_TYPE: "/examtype",
+  DELETE_EXAM_TYPE: "/examtype",
 };
 export const dealApi = {
   GET_DEALS: "/deal",

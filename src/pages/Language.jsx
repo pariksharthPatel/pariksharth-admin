@@ -5,28 +5,23 @@ import PageCreator from "../components/pagecreator";
 import { DATETIMEFORMAT } from "../constants";
 import useResponsive from "../hooks/useResponsive";
 import {
-  addGoalExam,
-  deleteGoalExam,
-  editGoalExam,
-  getGoalExams,
-} from "../redux/actions/goalExamActions";
+  addLanguage,
+  deleteLanguage,
+  editLanguage,
+  getLanguages,
+} from "../redux/actions/languageActions";
 import { loadingSelector } from "../redux/reducers/loadingReducer";
-import { goalExamTypes } from "../redux/types";
+import { languageTypes } from "../redux/types";
 import { addTableColumnMinWidth } from "../utils/addTableColumnMinWidth";
-import { useLocation, useNavigate } from "react-router-dom";
-import { IconButton } from "@mui/material";
-import Iconify from "../components/layout/iconify";
 
-const GoalExam = () => {
+const Languages = () => {
   const isMobile = useResponsive("down", "sm");
-  const navigate = useNavigate();
-  const location = useLocation();
-  console.log("location", location);
 
+  // const dispatch = useDispatch();
   const tableHeaders = [
     {
       field: "name",
-      headerName: "Exam Name",
+      headerName: "Language Name",
       type: "string",
       editable: false,
       flex: 1,
@@ -52,62 +47,38 @@ const GoalExam = () => {
     },
   ];
 
-  const tableData = useSelector((state) => state.common.goalExams);
+  const tableData = useSelector((state) => state.common.languages);
 
   const isTableLoading = useSelector((state) =>
-    loadingSelector(state, goalExamTypes.GET_GOAL_EXAMS)
+    loadingSelector(state, languageTypes.GET_LANGUAGES)
   );
   const isFormLoading = useSelector((state) =>
     loadingSelector(state, [
-      goalExamTypes.ADD_GOAL_EXAM,
-      goalExamTypes.UPDATE_GOAL_EXAM,
-      goalExamTypes.DELETE_GOAL_EXAM,
+      languageTypes.ADD_LANGUAGE,
+      languageTypes.UPDATE_LANGUAGE,
+      languageTypes.DELETE_LANGUAGE,
     ])
   );
-
-  const GoalExamAction = ({ data }) => {
-    return (
-      <IconButton
-        key={"GoalExamAction" + data._id}
-        onClick={() => navigate("/goalexam", { state: data })}
-      >
-        <Iconify icon="ant-design:schedule-twotone" />
-      </IconButton>
-    );
-  };
   return (
     <div>
       <PageCreator
-        screenName={"GoalExam"}
+        screenName={"Language"}
         tableHeaders={tableHeaders}
         tableData={tableData?.data}
         formFields={formFields}
         searchFields={searchFields}
         defaultFormData={{
           isActive: true,
-          goalId: location.state.goalId,
-          stateId: location.state.stateId,
-          aoiId: location.state._id,
         }}
         dialogWidth="lg"
         isLoading={isTableLoading}
         isFormLoading={isFormLoading}
         totalCount={tableData?.totalCount}
-        rowActions={[GoalExamAction]}
         // onFormSubmit={onFormSubmit}
-        onAdd={addGoalExam}
-        onEdit={editGoalExam}
-        onDelete={deleteGoalExam}
-        getTableData={(pageData) =>
-          getGoalExams({
-            query: {
-              ...pageData.query,
-              goalId: location.state.goalId,
-              stateId: location.state.stateId,
-              aoiId: location.state._id,
-            },
-          })
-        }
+        onAdd={addLanguage}
+        onEdit={editLanguage}
+        onDelete={deleteLanguage}
+        getTableData={getLanguages}
         deleteTitle="name"
         selectable={!isMobile}
         mobileRowActionColumnWidth={120}
@@ -116,18 +87,18 @@ const GoalExam = () => {
   );
 };
 
-export default GoalExam;
+export default Languages;
 
 const formFields = [
   {
     type: "text",
     name: "name",
-    label: "GoalExam Name",
-    placeholder: "Enter GoalExam Name",
+    label: "Language Name",
+    placeholder: "Enter Language Name",
     required: true,
     disabled: false,
     readOnly: false,
-    width: 4,
+    width: 6,
   },
 
   {
@@ -145,8 +116,8 @@ const searchFields = [
   {
     type: "text",
     name: "name",
-    label: "GoalExam Name",
-    placeholder: "Enter GoalExam Name",
+    label: "Language Name",
+    placeholder: "Enter Language Name",
     required: false,
     disabled: false,
     readOnly: false,

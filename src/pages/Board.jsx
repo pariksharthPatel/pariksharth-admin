@@ -14,8 +14,6 @@ import { loadingSelector } from "../redux/reducers/loadingReducer";
 import { boardTypes } from "../redux/types";
 import { addTableColumnMinWidth } from "../utils/addTableColumnMinWidth";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IconButton } from "@mui/material";
-import Iconify from "../components/layout/iconify";
 
 const Board = () => {
   const isMobile = useResponsive("down", "sm");
@@ -65,16 +63,6 @@ const Board = () => {
     ])
   );
 
-  const BoardAction = ({ data }) => {
-    return (
-      <IconButton
-        key={"BoardAction" + data._id}
-        onClick={() => navigate("/subboard")}
-      >
-        <Iconify icon="ant-design:schedule-twotone" />
-      </IconButton>
-    );
-  };
   return (
     <div>
       <PageCreator
@@ -85,27 +73,16 @@ const Board = () => {
         searchFields={searchFields}
         defaultFormData={{
           isActive: true,
-          qualificationId: location.state.qualificationId,
-          degreeId: location.state._id,
         }}
         dialogWidth="lg"
         isLoading={isTableLoading}
         isFormLoading={isFormLoading}
         totalCount={tableData?.totalCount}
-        rowActions={[BoardAction]}
         // onFormSubmit={onFormSubmit}
         onAdd={addBoard}
         onEdit={editBoard}
         onDelete={deleteBoard}
-        getTableData={(pageData) =>
-          getBoards({
-            query: {
-              ...pageData.query,
-              qualificationId: location.state.qualificationId,
-              degreeId: location.state._id,
-            },
-          })
-        }
+        getTableData={getBoards}
         deleteTitle="name"
         selectable={!isMobile}
         mobileRowActionColumnWidth={120}

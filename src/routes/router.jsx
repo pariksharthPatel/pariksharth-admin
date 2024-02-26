@@ -23,26 +23,23 @@ import Users from "../pages/Users";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffectOnce } from "react-use";
 import { getUserByToken } from "../redux/actions/authActions";
-import Deals from "../pages/Deals";
-import Expenses from "../pages/Expenses";
-import SalonServices from "../pages/SalonServices";
-import UserGroups from "../pages/UserGroups";
-import Employees from "../pages/Employees";
+
 import { getInstituteById } from "../redux/actions/instituteActions";
 import { useEffect } from "react";
-import POS from "../pages/POS";
 import Branches from "../pages/Branches";
 import Subject from "../pages/Subject";
 import Topic from "../pages/Topics";
 import SubTopic from "../pages/SubTopics";
-import Qualification from "../pages/Qualification";
 import Degree from "../pages/Degree";
 import Board from "../pages/Board";
 import Goal from "../pages/Goal";
-import State from "../pages/GoalState";
-import GoalAoi from "../pages/AOIS";
-import GoalExam from "../pages/GoalExam ";
 import Question from "../pages/Question";
+import States from "../pages/State";
+import Languages from "../pages/Language";
+import ExamTypes from "../pages/ExamType";
+import TestSeries from "../pages/TestSeries";
+import Test from "../pages/Tests";
+import TestQuestion from "../pages/TestQuestions";
 
 export function Router() {
   const dispatch = useDispatch();
@@ -114,13 +111,7 @@ export function Router() {
           exact: true,
           element: <Subject />,
         },
-        {
-          errorElement: <ErrorBoundary />,
 
-          path: "/qualification",
-          exact: true,
-          element: <Qualification />,
-        },
         {
           path: "/degree",
           exact: true,
@@ -141,18 +132,19 @@ export function Router() {
         {
           path: "/state",
           exact: true,
-          element: <State />,
+          element: <States />,
         },
         {
-          path: "/aoi",
+          path: "/language",
           exact: true,
-          element: <GoalAoi />,
+          element: <Languages />,
         },
         {
-          path: "/goalexam",
+          path: "/examtype",
           exact: true,
-          element: <GoalExam />,
+          element: <ExamTypes />,
         },
+
         {
           path: "/topic",
           exact: true,
@@ -219,46 +211,30 @@ export function Router() {
         {
           errorElement: <ErrorBoundary />,
 
-          path: "/qualification",
-          exact: true,
-          element: <Qualification />,
-        },
-        {
-          path: "/degree",
-          exact: true,
-          element: <Degree />,
-        },
-        {
-          path: "/board",
-          exact: true,
-          element: <Board />,
-        },
-        {
-          errorElement: <ErrorBoundary />,
-
           path: "/goal",
           exact: true,
           element: <Goal />,
         },
-        {
-          path: "/state",
-          exact: true,
-          element: <State />,
-        },
-        {
-          path: "/aoi",
-          exact: true,
-          element: <GoalAoi />,
-        },
-        {
-          path: "/goalexam",
-          exact: true,
-          element: <GoalExam />,
-        },
+
         {
           path: "/question",
           exact: true,
           element: <Question />,
+        },
+        {
+          path: "/testseries",
+          exact: true,
+          element: <TestSeries />,
+        },
+        {
+          path: "/tests",
+          exact: true,
+          element: <Test />,
+        },
+        {
+          path: "/testquestion",
+          exact: true,
+          element: <TestQuestion />,
         },
         // {
         //   errorElement: <ErrorBoundary />,

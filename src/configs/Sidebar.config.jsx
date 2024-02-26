@@ -45,6 +45,36 @@ const sidebarConfig = {
       icon: <Iconify icon="ant-design:pie-chart-twotone" />,
     },
     {
+      title: "State",
+      path: "/state",
+      // icon:    icon("ic_analytics"),
+      icon: <Iconify icon="ant-design:pie-chart-twotone" />,
+    },
+    {
+      title: "Language",
+      path: "/language",
+      // icon:    icon("ic_analytics"),
+      icon: <Iconify icon="ant-design:pie-chart-twotone" />,
+    },
+    {
+      title: "examtype",
+      path: "/examtype",
+      // icon:    icon("ic_analytics"),
+      icon: <Iconify icon="ant-design:pie-chart-twotone" />,
+    },
+    {
+      title: "degree",
+      path: "/degree",
+      // icon:    icon("ic_analytics"),
+      icon: <Iconify icon="ant-design:pie-chart-twotone" />,
+    },
+    {
+      title: "board",
+      path: "/board",
+      // icon:    icon("ic_analytics"),
+      icon: <Iconify icon="ant-design:pie-chart-twotone" />,
+    },
+    {
       title: "institutes",
       path: "/institutes",
       // icon:    icon("ic_analytics"),
@@ -164,12 +194,12 @@ const sidebarConfig = {
       // icon:    icon("ic_analytics"),
       icon: <Iconify icon="ant-design:pie-chart-twotone" />,
     },
-    {
-      title: "Qualification",
-      path: "/qualification",
-      // icon:    icon("ic_analytics"),
-      icon: <Iconify icon="ant-design:pie-chart-twotone" />,
-    },
+    // {
+    //   title: "Qualification",
+    //   path: "/qualification",
+    //   // icon:    icon("ic_analytics"),
+    //   icon: <Iconify icon="ant-design:pie-chart-twotone" />,
+    // },
     {
       title: "Goal",
       path: "/goal",
@@ -179,6 +209,12 @@ const sidebarConfig = {
     {
       title: "question",
       path: "/question",
+      // icon:    icon("ic_analytics"),
+      icon: <Iconify icon="ic:twotone-monitor-heart" />,
+    },
+    {
+      title: "testseries",
+      path: "/testseries",
       // icon:    icon("ic_analytics"),
       icon: <Iconify icon="ic:twotone-monitor-heart" />,
     },

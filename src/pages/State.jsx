@@ -1,6 +1,7 @@
 import moment from "moment";
 import React from "react";
 import { useSelector } from "react-redux";
+import TableImage from "../components/layout/TableImage";
 import PageCreator from "../components/pagecreator";
 import { DATETIMEFORMAT } from "../constants";
 import useResponsive from "../hooks/useResponsive";
@@ -13,15 +14,9 @@ import {
 import { loadingSelector } from "../redux/reducers/loadingReducer";
 import { stateTypes } from "../redux/types";
 import { addTableColumnMinWidth } from "../utils/addTableColumnMinWidth";
-import { useLocation, useNavigate } from "react-router-dom";
-import { IconButton } from "@mui/material";
-import Iconify from "../components/layout/iconify";
 
-const State = () => {
+const States = () => {
   const isMobile = useResponsive("down", "sm");
-  const navigate = useNavigate();
-  const location = useLocation();
-  console.log("location", location);
 
   // const dispatch = useDispatch();
   const tableHeaders = [
@@ -32,17 +27,6 @@ const State = () => {
       editable: false,
       flex: 1,
       ...addTableColumnMinWidth(isMobile, 100),
-    },
-
-    {
-      field: "aois",
-      headerName: " AOIS",
-      type: "string",
-      editable: false,
-      flex: 0.5,
-      valueFormatter: ({ value }) => value.length,
-
-      ...addTableColumnMinWidth(isMobile, 70),
     },
 
     {
@@ -67,26 +51,15 @@ const State = () => {
   const tableData = useSelector((state) => state.common.states);
 
   const isTableLoading = useSelector((state) =>
-    loadingSelector(state, stateTypes.GET_STATES)
+    loadingSelector(state, stateTypes.GET_CATEGORYS)
   );
   const isFormLoading = useSelector((state) =>
     loadingSelector(state, [
-      stateTypes.ADD_STATE,
-      stateTypes.UPDATE_STATE,
-      stateTypes.DELETE_STATE,
+      stateTypes.ADD_CATEGORY,
+      stateTypes.UPDATE_CATEGORY,
+      stateTypes.DELETE_CATEGORY,
     ])
   );
-
-  const StateAction = ({ data }) => {
-    return (
-      <IconButton
-        key={"StateAction" + data._id}
-        onClick={() => navigate("/aoi", { state: data })}
-      >
-        <Iconify icon="ant-design:schedule-twotone" />
-      </IconButton>
-    );
-  };
   return (
     <div>
       <PageCreator
@@ -97,21 +70,16 @@ const State = () => {
         searchFields={searchFields}
         defaultFormData={{
           isActive: true,
-          goalId: location.state._id,
         }}
         dialogWidth="lg"
         isLoading={isTableLoading}
         isFormLoading={isFormLoading}
         totalCount={tableData?.totalCount}
-        rowActions={[StateAction]}
+        // onFormSubmit={onFormSubmit}
         onAdd={addState}
         onEdit={editState}
         onDelete={deleteState}
-        getTableData={(pageData) =>
-          getStates({
-            query: { ...pageData.query, goalId: location.state._id },
-          })
-        }
+        getTableData={getStates}
         deleteTitle="name"
         selectable={!isMobile}
         mobileRowActionColumnWidth={120}
@@ -120,7 +88,7 @@ const State = () => {
   );
 };
 
-export default State;
+export default States;
 
 const formFields = [
   {
@@ -131,7 +99,7 @@ const formFields = [
     required: true,
     disabled: false,
     readOnly: false,
-    width: 4,
+    width: 6,
   },
 
   {
@@ -149,7 +117,6 @@ const searchFields = [
   {
     type: "text",
     name: "name",
-
     label: "State Name",
     placeholder: "Enter State Name",
     required: false,

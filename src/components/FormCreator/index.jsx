@@ -50,11 +50,13 @@ const FormCreator = React.forwardRef(
           onWatchFieldChange(value)
         );
       return () => {
-        reset();
+        // reset();
         subscription && subscription.unsubscribe();
       };
     }, [watch, isWatchEnabled]);
-
+    // React.useEffect(() => {
+    //   return () => reset();
+    // }, []);
     return (
       <FormProvider>
         <form onSubmit={handleSubmit(onSubmit)}>
