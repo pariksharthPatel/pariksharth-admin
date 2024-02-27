@@ -9,6 +9,7 @@ import {
   deleteTestSeries,
   editTestSeries,
   getTestSeriess,
+  publishTestSeries,
 } from "../redux/actions/testSeriesActions";
 import { loadingSelector } from "../redux/reducers/loadingReducer";
 import { testSeriesTypes } from "../redux/types";
@@ -53,6 +54,17 @@ const TestSeries = () => {
       </IconButton>
     );
   };
+
+  const PublishAction = ({ data }) => {
+    return (
+      <IconButton
+        key={"TestAction" + data._id}
+        onClick={() => dispatch(publishTestSeries({ data: { id: data._id } }))}
+      >
+        <Iconify icon="mingcute:print-line" />
+      </IconButton>
+    );
+  };
   return (
     <div>
       <PageCreator
@@ -61,7 +73,7 @@ const TestSeries = () => {
         tableData={tableData?.data}
         formFields={formFields}
         searchFields={searchFields}
-        rowActions={[TestAction]}
+        rowActions={[TestAction, PublishAction]}
         defaultFormData={{
           isActive: true,
           isPublic: true,

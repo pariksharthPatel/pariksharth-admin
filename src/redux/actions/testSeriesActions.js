@@ -32,6 +32,22 @@ export const addTestSeries = ({ data, callBack }) => {
   };
 };
 
+export const publishTestSeries = ({ data, callBack }) => {
+  return {
+    type: testSeriesTypes.PUBLISH_TEST_SERIES,
+    request: {
+      method: REQUESTMETHOD.POST,
+      data: data,
+      url: testSeriesApi.PUBLISH_TEST_SERIES,
+      isFormData: false,
+      enableMessages: true,
+      successMessage: "TestSeries Added Successfully",
+      failMessage: "Failed to add TestSeries",
+      callBack,
+    },
+  };
+};
+
 export const editTestSeries = ({ data, callBack }) => {
   delete data.subTestSeriess;
   return {

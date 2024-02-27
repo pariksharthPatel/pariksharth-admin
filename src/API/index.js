@@ -175,6 +175,8 @@ export const testSeriesApi = {
   GET_ALL_TEST_SERIESS: "/testseries/all",
 
   ADD_TEST_SERIES: "/testseries",
+  PUBLISH_TEST_SERIES: "/testseries/publish",
+
   UPDATE_TEST_SERIES: "/testseries",
   DELETE_TEST_SERIES: "/testseries",
 };

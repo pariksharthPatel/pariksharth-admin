@@ -13,7 +13,7 @@ import { useEffectOnce } from "react-use";
 import { getAllMySubjects } from "../redux/actions/subjectActions";
 import { getAllMyGoals } from "../redux/actions/goalActions";
 import { addTestQuestions } from "../redux/actions/testActions";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useNavigation } from "react-router-dom";
 
 const TestQuestion = () => {
   const [refetchCount, setRefetchCount] = React.useState(0);
@@ -23,6 +23,7 @@ const TestQuestion = () => {
   // const dispatch = useDispatch();
   const [watchData, setWatchData] = React.useState({});
   const location = useLocation();
+  const navigate = useNavigate();
 
   const {
     questions: tableData,
@@ -49,6 +50,7 @@ const TestQuestion = () => {
                   testId: location.state._id,
                   questions: selected,
                 },
+                callBack: () => navigate(-1),
               })
             );
           }}
