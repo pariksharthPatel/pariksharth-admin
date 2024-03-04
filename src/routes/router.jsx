@@ -288,6 +288,39 @@ export function Router() {
         },
       ],
     },
+    [ROLES.FACULTY]: {
+      path: "/",
+      element: (
+        <ProtectedRoute role={ROLES.INSTITUTEADMIN}>
+          <Main />
+        </ProtectedRoute>
+      ),
+      errorElement: <ErrorBoundary />,
+      children: [
+        {
+          path: "/",
+          element: <Dashboard />,
+        },
+
+        {
+          path: "/tests",
+          exact: true,
+          element: <Test />,
+        },
+        {
+          path: "/testquestion",
+          exact: true,
+          element: <TestQuestion />,
+        },
+
+        {
+          errorElement: <ErrorBoundary />,
+
+          path: "/setting",
+          element: <Settings />,
+        },
+      ],
+    },
   };
   const router = useRoutes([
     role

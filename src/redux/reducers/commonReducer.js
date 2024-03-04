@@ -77,7 +77,10 @@ const initialState = {
     users: null,
   },
   appErrors: [],
+  allBranches: [],
+
   branches: [],
+  allBranches: [],
 
   currentSalon: {},
   isNavOpen: true,
@@ -89,12 +92,12 @@ const initialState = {
 const commonReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(authTypes.LOGIN_USER, (state, action) => {
-      if (action.payload.data.user.roles.length > 0) {
+      if (action.payload.data.user.roles.length > 1) {
         state.isRoleSelectorOpen = true;
       }
     })
     .addCase(authTypes.GET_USER_BY_TOKEN, (state, action) => {
-      if (action.payload.data.roles.length > 0) {
+      if (action.payload.data.roles.length > 1) {
         // state.isRoleSelectorOpen = true;
       }
     })
@@ -263,6 +266,9 @@ const commonReducer = createReducer(initialState, (builder) => {
     })
     .addCase(branchTypes.GET_BRANCHS, (state, action) => {
       state.branches = action.payload.data;
+    })
+    .addCase(branchTypes.GET_ALL_BRANCHS, (state, action) => {
+      state.allBranches = action.payload.data;
     })
     .addCase(settingTypes.GET_SETTING, (state, action) => {
       state.setting = action.payload.data;

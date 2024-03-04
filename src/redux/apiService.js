@@ -38,7 +38,9 @@ export const apiService =
         if (isFormData) {
           const formData = new FormData();
           const newData = Object.entries(data).map(([key, value]) => {
-            formData.append(key, value);
+            if (value) {
+              formData.append(key, value);
+            }
           });
           data = formData;
         }
@@ -50,7 +52,6 @@ export const apiService =
               delete params[key]
           );
         }
-        
 
         const response = await axios({
           method,
@@ -83,7 +84,7 @@ export const apiService =
         dispatch({ type: loadingTypes.REMOVE_LOADING, payload: action.type });
         dispatch({ type: action.type, payload: response.data });
       } catch (error) {
-        console.log("error", error,BASE_URL + url);
+        console.log("error", error, BASE_URL + url);
         if (error.toJSON().message === "Network Error") {
           dispatch(
             showSnackbar({

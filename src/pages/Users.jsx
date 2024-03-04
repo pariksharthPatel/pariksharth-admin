@@ -1,5 +1,5 @@
 import moment from "moment";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TableImage from "../components/layout/TableImage";
 import PageCreator from "../components/pagecreator";
@@ -20,6 +20,7 @@ import {
   getInstitutes,
 } from "../redux/actions/instituteActions";
 import { FORMMODE } from "../enums";
+import { getAllBranchs } from "../redux/actions/branchActions";
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -27,9 +28,13 @@ const Users = () => {
   const institutes = useSelector((state) => state.common.institutes);
   console.log("institutes", institutes);
   const { instituteId, activeRole } = useSelector((state) => state.auth);
+  const [watchData, setWatchData] = React.useState({});
+
   // const dispatch = useDispatch();
 
-  const tableData = useSelector((state) => state.common.users);
+  const { users: tableData, allBranches } = useSelector(
+    (state) => state.common
+  );
 
   const isTableLoading = useSelector((state) =>
     loadingSelector(state, userTypes.GET_PLATFORMS)
@@ -51,14 +56,19 @@ const Users = () => {
       })
     );
   }, []);
-  console.log("institutes.data", institutes);
+  useEffect(() => {
+    if (watchData.activeRole === ROLES.BRANCHADMIN) {
+      dispatch(getAllBranchs());
+    }
+  }, [watchData.activeRole]);
+  console.log("institutes.data", allBranches);
   return (
     <div>
       <PageCreator
         screenName={"Users"}
         tableHeaders={tableHeaders(isMobile)}
         tableData={tableData?.data}
-        formFields={formFields(instituteId, activeRole)}
+        formFields={formFields(instituteId, activeRole, watchData)}
         searchFields={searchFields}
         defaultFormData={{
           isActive: true,
@@ -73,7 +83,11 @@ const Users = () => {
           roles: Object.keys(ROLES)
             .filter((r) => r !== ROLES.SUPERADMIN)
             .map((el) => ({ text: el, value: el })),
+          activeRole: Object.keys(ROLES)
+            .filter((r) => r !== ROLES.SUPERADMIN)
+            .map((el) => ({ text: el, value: el })),
           instituteId: institutes,
+          branchId: allBranches,
         }}
         // onFormSubmit={onFormSubmit}
         onAdd={addUser}
@@ -83,6 +97,10 @@ const Users = () => {
         deleteTitle="name"
         selectable={!isMobile}
         mobileRowActionColumnWidth={120}
+        isWatchEnabled={true}
+        onWatchFieldChange={(data) => {
+          setWatchData(data);
+        }}
       />
     </div>
   );
@@ -90,9 +108,10 @@ const Users = () => {
 
 export default Users;
 
-const formFields = (instituteId, activeRole) => [
+const formFields = (instituteId, activeRole, watchData) => [
   {
     type: "select",
+    hideAt: FORMMODE.ADD,
 
     name: "roles",
     label: "Choose Role ",
@@ -108,6 +127,39 @@ const formFields = (instituteId, activeRole) => [
     mobileWidth: 12,
   },
 
+  {
+    type: "select",
+
+    name: "activeRole",
+    label: "Choose Role ",
+    placeholder: "Choose Role",
+    optionLabel: "text",
+    optionValue: "value",
+    hasExternalOptions: true,
+    required: true,
+    disabled: false,
+    readOnly: false,
+    multiple: false,
+    width: 4,
+    mobileWidth: 12,
+  },
+  {
+    type: "select",
+    hidden: watchData.activeRole !== ROLES.BRANCHADMIN,
+
+    name: "branchId",
+    label: "Choose Branch ",
+    placeholder: "Choose Branch",
+    optionLabel: "name",
+    optionValue: "_id",
+    hasExternalOptions: true,
+    required: true,
+    disabled: false,
+    readOnly: false,
+    multiple: false,
+    width: 4,
+    mobileWidth: 12,
+  },
   {
     type: "text",
     name: "name",

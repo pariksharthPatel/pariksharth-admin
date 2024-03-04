@@ -55,16 +55,6 @@ const Question = () => {
   const formFields = [
     {
       type: "text",
-      name: "name",
-      label: "Question Name",
-      placeholder: "Enter Question Name",
-      required: true,
-      disabled: false,
-      readOnly: false,
-      width: 4,
-    },
-    {
-      type: "text",
       name: "filtered",
       label: "Filter Values",
       placeholder: "Enter Filter Values",
@@ -260,14 +250,15 @@ const Question = () => {
 export default Question;
 const tableHeaders = (isMobile) => [
   {
-    field: "name",
-    headerName: "Question Name",
+    field: "que",
+    headerName: " Question",
     type: "string",
     editable: false,
-    flex: 1,
-    ...addTableColumnMinWidth(isMobile, 100),
-  },
+    flex: 0.5,
+    // valueFormatter: ({ value }) => value.length,
 
+    ...addTableColumnMinWidth(isMobile, 70),
+  },
   {
     field: "filtered",
     headerName: " Filter Code",
@@ -301,10 +292,10 @@ const tableHeaders = (isMobile) => [
 const searchFields = [
   {
     type: "text",
-    name: "name",
+    name: "que",
 
-    label: "Question Name",
-    placeholder: "Enter Question Name",
+    label: "Question",
+    placeholder: "Enter Question",
     required: false,
     disabled: false,
     readOnly: false,

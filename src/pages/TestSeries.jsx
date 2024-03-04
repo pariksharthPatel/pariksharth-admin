@@ -19,17 +19,23 @@ import { getAllMyGoals } from "../redux/actions/goalActions";
 import { IconButton } from "@mui/material";
 import Iconify from "../components/layout/iconify";
 import { useNavigate } from "react-router-dom";
+import { getAllMySubjects } from "../redux/actions/subjectActions";
 
 const TestSeries = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const isMobile = useResponsive("down", "sm");
-  const { testSeries: tableData, allGoals } = useSelector(
-    (state) => state.common
-  );
+  const {
+    testSeries: tableData,
+    allGoals,
+
+    allSubjects,
+  } = useSelector((state) => state.common);
 
   useEffectOnce(() => {
+    dispatch(getAllMySubjects());
+
     dispatch(getAllMyGoals());
   }, []);
   // const dispatch = useDispatch();
@@ -78,6 +84,7 @@ const TestSeries = () => {
           isActive: true,
           isPublic: true,
           tergetedExams: [],
+          subjects: [],
         }}
         dialogWidth="lg"
         isLoading={isTableLoading}
@@ -85,6 +92,7 @@ const TestSeries = () => {
         totalCount={tableData?.totalCount}
         selectOptions={{
           tergetedExams: allGoals,
+          subject: allSubjects,
         }}
         // onFormSubmit={onFormSubmit}
         onAdd={addTestSeries}
@@ -138,6 +146,21 @@ const formFields = [
     disabled: false,
     readOnly: false,
     width: 4,
+  },
+  {
+    type: "select",
+    name: "subject",
+    label: "Choose Subject ",
+    placeholder: "Choose Subject",
+    optionLabel: "name",
+    optionValue: "_id",
+    hasExternalOptions: true,
+    required: false,
+    disabled: false,
+    readOnly: false,
+    multiple: true,
+    width: 3,
+    mobileWidth: 4,
   },
   {
     type: "text",
