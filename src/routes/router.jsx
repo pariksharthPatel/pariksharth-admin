@@ -40,6 +40,8 @@ import ExamTypes from "../pages/ExamType";
 import TestSeries from "../pages/TestSeries";
 import Test from "../pages/Tests";
 import TestQuestion from "../pages/TestQuestions";
+import ProductTypes from "../pages/ProductsTypes";
+import Students from "../pages/Students";
 
 export function Router() {
   const dispatch = useDispatch();
@@ -155,6 +157,16 @@ export function Router() {
           exact: true,
           element: <SubTopic />,
         },
+        {
+          path: "/producttype",
+          exact: true,
+          element: <ProductTypes />,
+        },
+        {
+          path: "/student",
+          exact: true,
+          element: <Students />,
+        },
 
         {
           errorElement: <ErrorBoundary />,
@@ -189,6 +201,11 @@ export function Router() {
         {
           path: "/users",
           element: <Users />,
+        },
+        {
+          path: "/student",
+          exact: true,
+          element: <Students />,
         },
         {
           errorElement: <ErrorBoundary />,
@@ -226,16 +243,7 @@ export function Router() {
           exact: true,
           element: <TestSeries />,
         },
-        {
-          path: "/tests",
-          exact: true,
-          element: <Test />,
-        },
-        {
-          path: "/testquestion",
-          exact: true,
-          element: <TestQuestion />,
-        },
+
         // {
         //   errorElement: <ErrorBoundary />,
 

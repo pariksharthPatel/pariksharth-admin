@@ -208,6 +208,24 @@ export const examTypeApi = {
   UPDATE_EXAM_TYPE: "/examtype",
   DELETE_EXAM_TYPE: "/examtype",
 };
+
+export const productTypeApi = {
+  GET_PRODUCT_TYPES: "/producttype",
+  GET_ALL_PRODUCT_TYPES: "/producttype/all",
+
+  ADD_PRODUCT_TYPE: "/producttype",
+  UPDATE_PRODUCT_TYPE: "/producttype",
+  DELETE_PRODUCT_TYPE: "/producttype",
+};
+
+export const studentApi = {
+  GET_STUDENTS: "/student",
+  GET_ALL_STUDENTS: "/student/all",
+
+  ADD_STUDENT: "/student",
+  UPDATE_STUDENT: "/student",
+  DELETE_STUDENT: "/student",
+};
 export const dealApi = {
   GET_DEALS: "/deal",
   GET_ALL_DEALS: "/deal/all",

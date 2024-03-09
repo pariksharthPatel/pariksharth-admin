@@ -30,6 +30,8 @@ import {
   examTypeTypes,
   testSeriesTypes,
   testTypes,
+  productTypeTypes,
+  studentTypes,
 } from "../types";
 
 const initialState = {
@@ -59,6 +61,8 @@ const initialState = {
   questions: [],
   testSeries: [],
   tests: [],
+  productTypes: [],
+  students: [],
 
   setting: {},
   selected: [],
@@ -198,6 +202,18 @@ const commonReducer = createReducer(initialState, (builder) => {
     })
     .addCase(testTypes.GET_ALL_TESTS, (state, action) => {
       state.tests = action.payload.data;
+    })
+    .addCase(productTypeTypes.GET_PRODUCT_TYPES, (state, action) => {
+      state.productTypes = action.payload.data;
+    })
+    .addCase(productTypeTypes.GET_ALL_PRODUCT_TYPES, (state, action) => {
+      state.productTypes = action.payload.data;
+    })
+    .addCase(studentTypes.GET_STUDENTS, (state, action) => {
+      state.students = action.payload.data;
+    })
+    .addCase(studentTypes.GET_ALL_STUDENTS, (state, action) => {
+      state.students = action.payload.data;
     })
 
     //misc

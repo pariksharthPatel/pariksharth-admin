@@ -101,6 +101,18 @@ const sidebarConfig = {
       // icon:    icon("ic_analytics"),
       icon: <Iconify icon="ic:twotone-color-lens" />,
     },
+    {
+      title: "producttype",
+      path: "/producttype",
+      // icon:    icon("ic_analytics"),
+      icon: <Iconify icon="ic:twotone-color-lens" />,
+    },
+    {
+      title: "student",
+      path: "/student",
+      // icon:    icon("ic_analytics"),
+      icon: <Iconify icon="ic:twotone-color-lens" />,
+    },
     // {
     //   title: "currency",
     //   path: "/currency",
@@ -187,6 +199,12 @@ const sidebarConfig = {
       path: "/users",
       // icon:    icon("ic_analytics"),
       icon: <Iconify icon="ic:twotone-account-circle" />,
+    },
+    {
+      title: "student",
+      path: "/student",
+      // icon:    icon("ic_analytics"),
+      icon: <Iconify icon="ic:twotone-color-lens" />,
     },
     {
       title: "Subject",

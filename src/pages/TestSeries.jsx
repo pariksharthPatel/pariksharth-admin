@@ -71,6 +71,7 @@ const TestSeries = () => {
       </IconButton>
     );
   };
+  console.log("allSubjects", allSubjects);
   return (
     <div>
       <PageCreator
@@ -92,7 +93,7 @@ const TestSeries = () => {
         totalCount={tableData?.totalCount}
         selectOptions={{
           tergetedExams: allGoals,
-          subject: allSubjects,
+          subjects: allSubjects,
         }}
         // onFormSubmit={onFormSubmit}
         onAdd={addTestSeries}
@@ -149,7 +150,7 @@ const formFields = [
   },
   {
     type: "select",
-    name: "subject",
+    name: "subjects",
     label: "Choose Subject ",
     placeholder: "Choose Subject",
     optionLabel: "name",
