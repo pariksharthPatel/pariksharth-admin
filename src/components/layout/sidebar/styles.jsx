@@ -13,6 +13,10 @@ export const StyledNavItem = styled((props) => (
   textTransform: "capitalize",
   color: theme.palette.text.secondary,
   borderRadius: theme.shape.borderRadius,
+  ":hover": {
+    color: theme.palette.primary.pariksharthPrimary,
+    // color: theme.palette.primary.main,
+  },
 }));
 
 export const StyledNavItemIcon = styled(ListItemIcon)({
