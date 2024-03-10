@@ -40,7 +40,7 @@ function DashboardCard({
   return (
     <Card
       sx={{
-        py: 5,
+        py: 2,
         boxShadow: 0,
         textAlign: "center",
         color: (theme) => theme.palette[color].darker,
@@ -59,14 +59,18 @@ function DashboardCard({
             )} 0%, ${alpha(theme.palette[color].dark, 0.24)} 100%)`,
         }}
       >
-        <Iconify icon={icon} width={24} height={24} />
+        {/* <Iconify icon={icon} width={24} height={24} /> */}
+        <Iconify icon={icon} width={18} height={18} />
       </StyledIcon>
 
-      <Typography variant="h3">{total}</Typography>
-
-      <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        {title}
+      <Typography variant="h5">
+        {/* <Typography variant="subtitle2"> */}
+        {total} {title}
       </Typography>
+
+      {/* <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
+        {title}
+      </Typography> */}
     </Card>
   );
 }

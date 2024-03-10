@@ -4,6 +4,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 
 import Categories from "../pages/Categories";
 import Dashboard from "../pages/Dashboard";
+import Reports from "../pages/Reports";
 import Themes from "../pages/Themes";
 import Currency from "../pages/Currency";
 
@@ -72,6 +73,10 @@ export function Router() {
         {
           path: "/",
           element: <Dashboard />,
+        },
+        {
+          path: "/reports",
+          element: <Reports />,
         },
 
         {
