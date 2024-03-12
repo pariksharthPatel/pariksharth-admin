@@ -140,7 +140,6 @@ const Institutes = () => {
         }
         onClose={() => setDeleteData()}
       />
-
       <PageCreator
         screenName={"Institutes"}
         tableHeaders={tableHeaders}
@@ -169,6 +168,34 @@ const Institutes = () => {
         mobileRowActionColumnWidth={150}
         selectable={false}
       />
+      <PageCreator
+        screenName={"changes by rohanbhai and harsh"}
+        tableHeaders={tableHeaders}
+        tableData={tableData?.data}
+        formFields={formFieldsByRp}
+        defaultFormData={{
+          isActive: true,
+          // description: description,
+          // isManyInstitutes: false,
+          // isExpired: false,
+          // categoryId: [],
+        }}
+        dialogWidth="lg"
+        isLoading={isTableLoading}
+        isFormLoading={isFormLoading}
+        totalCount={tableData?.totalCount}
+        onAdd={addInstitute}
+        onEdit={editInstitute}
+        onDelete={deleteInstitute}
+        getTableData={getInstitutes}
+        deleteTitle="name"
+        selectOptions={{
+          themeId: themes || [],
+          // currencyId: currencies || [],
+        }}
+        mobileRowActionColumnWidth={150}
+        selectable={false}
+      />{" "}
     </div>
   );
 };
@@ -368,6 +395,323 @@ const formFields = [
   //   width: 12,
   //   mobileWidth: 12,
   // },
+
+  {
+    type: "text",
+    name: "razorpayId",
+    label: "Razorpay Id",
+    placeholder: "Enter Razorpay Id",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 12,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "upiId",
+    label: "Upi Id",
+    placeholder: "Enter Upi Id",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 12,
+    mobileWidth: 12,
+  },
+  {
+    type: "boolean",
+    name: "isActive",
+    label: "Status",
+    placeholder: "Enter Status",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 2,
+    mobileWidth: 12,
+  },
+];
+
+const formFieldsByRp = [
+  {
+    type: "subSectionHeader",
+    title: "basic information",
+    // size: 60, // by default size = 30
+    width: 12,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "name",
+    label: "Institute Name",
+    placeholder: "Enter Institute Name",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "email",
+    label: "Institute Email",
+    placeholder: "Enter Institute Email",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+
+  {
+    type: "text",
+    name: "contactPerson",
+    label: "Contact Person Name",
+    placeholder: "Enter Contact Person Name",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "contactNumber",
+    label: "Contact Number",
+    placeholder: "Enter Contact Number",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+
+  {
+    type: "image",
+    name: "logo",
+    label: "Choose Logo",
+    placeholder: "Choose Logo",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+
+  {
+    type: "select",
+    name: "themeId",
+    label: "Choose Theme ",
+    placeholder: "Choose Theme",
+    optionLabel: "name",
+    optionValue: "_id",
+    hasExternalOptions: true,
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 3,
+    mobileWidth: 12,
+  },
+
+  // {
+  //   type: "select",
+  //   name: "currencyId",
+  //   label: "Choose Currency ",
+  //   placeholder: "Choose Currency",
+  //   optionLabel: "symbol",
+  //   optionValue: "_id",
+  //   hasExternalOptions: true,
+  //   required: true,
+  //   disabled: false,
+  //   readOnly: false,
+  //   multiple: false,
+  //   width: 3,
+  //   mobileWidth: 12,
+  // },
+  {
+    type: "text",
+    name: "slogan",
+    label: "Slogan",
+    placeholder: "Enter Slogan",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 12,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "operatingLocations",
+    label: "Operating Locations",
+    placeholder: "Enter Operating Locations",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 12,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "domainName",
+    label: "Website",
+    placeholder: "Enter Website Url",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 12,
+    mobileWidth: 12,
+  },
+
+  {
+    type: "richtext",
+    // name: "aboutDetails",
+    name: "aboutInstitute",
+    label: "About Institute",
+    placeholder: "Enter About Institute",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 12,
+    mobileWidth: 12,
+  },
+
+  // {
+  //   type: "text",
+  //   name: "tagLine",
+  //   label: "Tag Line",
+  //   placeholder: "Enter Tag Line",
+  //   required: false,
+  //   disabled: false,
+  //   readOnly: false,
+  //   width: 12,
+  //   mobileWidth: 12,
+  // },
+
+  // changes by rp
+  // created a new component
+  {
+    type: "lineSeperation",
+    width: 12,
+    mobileWidth: 12,
+  },
+
+  {
+    type: "subSectionHeader",
+    title: "Address",
+    // size: 60, // by default size = 30
+  },
+
+  {
+    type: "richtext",
+    name: "address",
+    label: "Address",
+    placeholder: "Enter Address",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 12,
+    mobileWidth: 12,
+  },
+
+  {
+    type: "number",
+    name: "pincode",
+    label: "Pincode",
+    placeholder: "Enter Pincode",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "select",
+    name: "city",
+    label: "Village/City",
+    placeholder: "Select Village/City",
+    // label: "Choose Theme ",
+    // placeholder: "Choose Theme",
+    optionLabel: "city",
+    optionValue: "_id",
+    hasExternalOptions: true,
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "select",
+    name: "district",
+    label: "District",
+    placeholder: "State District",
+    optionLabel: "district",
+    optionValue: "_id",
+    hasExternalOptions: true,
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "state",
+    label: "State",
+    placeholder: "State State",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "mapUrl",
+    label: "Google Map Location",
+    placeholder: "Enter Google Map Location Url",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 12,
+    mobileWidth: 12,
+  },
+
+  // changes by rp
+  // created a new component
+  {
+    type: "lineSeperation",
+    width: 12,
+    mobileWidth: 12,
+  },
+
+  // {
+  //   type: "richtext",
+  //   name: "workingTime",
+  //   label: "Working Time",
+  //   placeholder: "Enter Working Time",
+  //   required: false,
+  //   disabled: false,
+  //   readOnly: false,
+  //   width: 12,
+  //   mobileWidth: 12,
+  // },
+
+  {
+    type: "subSectionHeader",
+    title: "Financial Informations",
+    // size: 60, // by default size = 30
+  },
+  {
+    type: "text",
+    name: "gstNumber",
+    label: "GST Number",
+    placeholder: "Enter GST Number",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 12,
+    mobileWidth: 12,
+  },
 
   {
     type: "text",

@@ -12,5 +12,6 @@ export { default as number } from "./Number";
 export { default as datetime } from "./DateTime";
 export { default as file } from "./File";
 
-
-
+// changes by rp
+export { default as lineSeperation } from "./LineSeperation";
+export { default as subSectionHeader } from "./SubSectionHeader";

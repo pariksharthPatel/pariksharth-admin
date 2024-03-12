@@ -58,6 +58,10 @@ const PageCreator = ({
   refetchCount = 0,
   isWatchEnabled = false,
   onWatchFieldChange = [],
+
+  // changes by rp
+  lineSeperation,
+  subSectionHeader,
 }) => {
   const theme = useTheme();
   const searchFormRef = useRef();
