@@ -89,22 +89,22 @@ const sidebarConfig = {
 
     {
       title: "Affiliates",
-      // path: "/Affiliates",
-      path: "#",
+      path: "/Affiliates",
+      // path: "#",
       // icon:    icon("ic_analytics"),
       icon: <Iconify icon="majesticons:library-line" />,
       children: [
         {
           title: "branches",
-          // path: "/branches",
-          path: "#",
+          path: "/affiliatesbranches",
+          // path: "#",
           // icon:    icon("ic_analytics"),
           icon: <Iconify icon="fluent:branch-fork-hint-20-regular" />,
           children: [
             {
               title: "users",
-              // path: "/users",
-              path: "#",
+              path: "/affiliatesUsers",
+              // path: "#",
               // icon:    icon("ic_analytics"),
               icon: <Iconify icon="flowbite:users-outline" />,
             },
@@ -373,7 +373,7 @@ const sidebarConfig = {
     },
     {
       title: "Pariksharth Imports",
-      path: "/#",
+      path: "#",
       // icon:    icon("ic_analytics"),
       icon: <Iconify icon="uil:import" />,
       children: [
@@ -428,8 +428,8 @@ const sidebarConfig = {
         },
         {
           title: "Mock Tests",
-          // path: "/mockTests",
-          path: "#",
+          path: "/mockTests",
+          // path: "#",
           // icon:    icon("ic_analytics"),
           icon: <Iconify icon="healthicons:i-exam-qualification-outline" />,
         },

@@ -22,7 +22,7 @@ import useResponsive from "../hooks/useResponsive";
 import { addTableColumnMinWidth } from "../utils/addTableColumnMinWidth";
 // import { LoadingButton } from "@mui/lab";
 
-const Institutes = () => {
+const Affiliates = () => {
   const dispatch = useDispatch();
   const isMobile = useResponsive("down", "sm");
   const themes = useSelector((state) => state.common.themes);
@@ -200,7 +200,7 @@ const Institutes = () => {
   );
 };
 
-export default Institutes;
+export default Affiliates;
 
 const description =
   "<span>How To Get The Deal:</span><br/><span>1. Click On Get Deal Button</span><br/><span>2. Add Institute To Cart Or Click On Buy 1</span><br/><span>3. Select Address</span><br/><span>4. Select The Payment Method</span><br/><span>5. Place Order. Happy Looting</span>";
@@ -442,8 +442,8 @@ const formFieldsByRp = [
   {
     type: "text",
     name: "name",
-    label: "Institute Name",
-    placeholder: "Enter Institute Name",
+    label: "Affiliate's Name",
+    placeholder: "Enter Affiliates Name",
     required: true,
     disabled: false,
     readOnly: false,
@@ -453,8 +453,8 @@ const formFieldsByRp = [
   {
     type: "text",
     name: "email",
-    label: "Institute Email",
-    placeholder: "Enter Institute Email",
+    label: "Affiliate's Email",
+    placeholder: "Enter Affiliate's Email",
     required: true,
     disabled: false,
     readOnly: false,
@@ -564,9 +564,9 @@ const formFieldsByRp = [
   {
     type: "richtext",
     // name: "aboutDetails",
-    name: "aboutInstitute",
-    label: "About Institute",
-    placeholder: "Enter About Institute",
+    name: "aboutAffiliate",
+    label: "About Affiliate",
+    placeholder: "Enter About Affiliate",
     required: false,
     disabled: false,
     readOnly: false,
@@ -733,6 +733,143 @@ const formFieldsByRp = [
     disabled: false,
     readOnly: false,
     width: 12,
+    mobileWidth: 12,
+  },
+
+  // changes by rp
+  // created a new component
+  {
+    type: "lineSeperation",
+    width: 12,
+    mobileWidth: 12,
+  },
+  {
+    type: "subSectionHeader",
+    title: "Infrastructure information",
+    // size: 60, // by default size = 30
+    width: 12,
+    mobileWidth: 12,
+  },
+  {
+    type: "number",
+    name: "totalSittingCapacity",
+    label: "Total Sitting Capacity",
+    placeholder: "Enter Number Of Seats Available",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "number",
+    name: "seatWithAc",
+    label: "Seat with Ac",
+    placeholder: "Enter Number Of Seats With Ac",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "number",
+    name: "seatWithoutAc",
+    label: "Seat without Ac",
+    placeholder: "Enter Number Of Seats Without Ac",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "number",
+    name: "airGapSittingCapacity",
+    label: "Air Gap Sitting Capacity",
+    placeholder: "Enter Number Of Seats With Air Gap Sitting Capacity",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "number",
+    name: "seatsWithPartition",
+    label: "Seats with Partition",
+    placeholder: "Enter Number Of Seats With Partition",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "number",
+    name: "seatsWithoutPartition",
+    label: "Seats without Partition",
+    placeholder: "Enter Number Of Seats Without Partition",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "number",
+    name: "seatsWithElectricalPlug",
+    label: "Seats with Electrical Plug",
+    placeholder: "Enter Number Of Seats With Electrical Plug",
+    required: false,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+
+  {
+    type: "boolean",
+    name: "internetFacility",
+    label: "Internet Facility",
+    placeholder: "Enter Status",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 2,
+    mobileWidth: 12,
+  },
+  {
+    type: "boolean",
+    name: "parkingFacility",
+    label: "Parking Facility",
+    placeholder: "Enter Status",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 2,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "openTime",
+    label: "Open Time",
+    placeholder: "Enter Open Time",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 6,
+    mobileWidth: 12,
+  },
+  {
+    type: "text",
+    name: "closeTime",
+    label: "Close Time",
+    placeholder: "Enter Close Time",
+    required: true,
+    disabled: false,
+    readOnly: false,
+    width: 6,
     mobileWidth: 12,
   },
   {

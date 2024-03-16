@@ -21,7 +21,7 @@ import Iconify from "../components/layout/iconify";
 import { useNavigate } from "react-router-dom";
 import { getAllMySubjects } from "../redux/actions/subjectActions";
 
-const TestSeries = () => {
+const MockTests = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -75,7 +75,7 @@ const TestSeries = () => {
   return (
     <div>
       <PageCreator
-        screenName={"Test Series"}
+        screenName={"Mock Tests"}
         tableHeaders={tableHeaders(isMobile)}
         tableData={tableData?.data}
         formFields={formFields}
@@ -105,7 +105,7 @@ const TestSeries = () => {
         mobileRowActionColumnWidth={120}
       />
       <PageCreator
-        screenName={"Test Series By Rp"}
+        screenName={"Mock Tests By Rp"}
         tableHeaders={tableHeaders(isMobile)}
         tableData={tableData?.data}
         formFields={formFieldsByRp}
@@ -138,7 +138,7 @@ const TestSeries = () => {
   );
 };
 
-export default TestSeries;
+export default MockTests;
 const tableHeaders = (isMobile) => [
   {
     field: "name",
@@ -308,51 +308,51 @@ const formFieldsByRp = [
   {
     type: "text",
     name: "name",
-    label: "TestSeries Name",
-    placeholder: "Enter TestSeries Name",
+    label: "Name",
+    placeholder: "Enter Name",
     required: true,
     disabled: false,
     readOnly: false,
     width: 4,
   },
-  {
-    type: "select",
-    name: "targetingType",
-    label: "Targeting Subject Wise or Exam Wise",
-    // label: "Targeting to",
-    placeholder: "Subject Wise or Exam Wise",
-    optionLabel: "name",
-    optionValue: "_id",
-    hasExternalOptions: true,
-    required: false,
-    disabled: false,
-    readOnly: false,
-    multiple: true,
-    width: 4,
-    mobileWidth: 4,
-  },
-  {
-    type: "select",
-    name: "subject",
-    label: "Subject",
-    placeholder: "Subject",
-    // hidden: !Boolean(watchData.targetingType),
-    optionLabel: "name",
-    optionValue: "_id",
-    hasExternalOptions: true,
-    required: false,
-    disabled: false,
-    readOnly: false,
-    multiple: true,
-    width: 4,
-    mobileWidth: 4,
-  },
+  //   {
+  //     type: "select",
+  //     name: "targetingType",
+  //     label: "Targeting Subject Wise or Exam Wise",
+  //     // label: "Targeting to",
+  //     placeholder: "Subject Wise or Exam Wise",
+  //     optionLabel: "name",
+  //     optionValue: "_id",
+  //     hasExternalOptions: true,
+  //     required: false,
+  //     disabled: false,
+  //     readOnly: false,
+  //     multiple: true,
+  //     width: 4,
+  //     mobileWidth: 4,
+  //   },
+  //   {
+  //     type: "select",
+  //     name: "subject",
+  //     label: "Subject",
+  //     placeholder: "Subject",
+  //     // hidden: !Boolean(watchData.targetingType),
+  //     optionLabel: "name",
+  //     optionValue: "_id",
+  //     hasExternalOptions: true,
+  //     required: false,
+  //     disabled: false,
+  //     readOnly: false,
+  //     multiple: true,
+  //     width: 4,
+  //     mobileWidth: 4,
+  //   },
 
   {
     type: "select",
     name: "tergetedExams",
-    label: "Choose Targeted Exams ",
-    placeholder: "Choose Targeted Exams",
+    label: "Choose Targeted Exam",
+    placeholder: "Choose Targeted Exam",
     optionLabel: "name",
     optionValue: "_id",
     hasExternalOptions: true,
@@ -385,12 +385,36 @@ const formFieldsByRp = [
     readOnly: false,
     width: 12,
   },
-
+  //   {
+  //     type: "boolean",
+  //     name: "areLiveTests",
+  //     label: "Live Tests",
+  //     placeholder: "Live Tests",
+  //     optionLabel: "name",
+  //     optionValue: "_id",
+  //     hasExternalOptions: true,
+  //     required: false,
+  //     disabled: false,
+  //     readOnly: false,
+  //     multiple: false,
+  //     width: 12,
+  //     mobileWidth: 12,
+  //   },
+  //   {
+  //     type: "number",
+  //     name: "showResultAfter",
+  //     label: "Advertisement Number",
+  //     placeholder: "Advertisement Number",
+  //     required: true,
+  //     disabled: false,
+  //     readOnly: false,
+  //     width: 4,
+  //   },
   {
     type: "datetime",
     name: "startTime",
-    label: "Start Time",
-    placeholder: "Enter Start Time",
+    label: "Start Date And Time",
+    placeholder: "Enter Start Date And Time",
     required: true,
     disabled: false,
     readOnly: false,
@@ -400,8 +424,8 @@ const formFieldsByRp = [
   {
     type: "datetime",
     name: "endTime",
-    label: "End Time",
-    placeholder: "Enter End Time",
+    label: "End Date And Time",
+    placeholder: "Enter End Date And Time",
     required: true,
     disabled: false,
     readOnly: false,

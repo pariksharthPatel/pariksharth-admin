@@ -43,6 +43,10 @@ import Test from "../pages/Tests";
 import TestQuestion from "../pages/TestQuestions";
 import ProductTypes from "../pages/ProductsTypes";
 import Students from "../pages/Students";
+import Affiliates from "../pages/Affiliates";
+import AffiliatesBranches from "../pages/AffiliatesBranches";
+import AffiliatesUsers from "../pages/AffiliatesUsers";
+import MockTests from "../pages/MockTests";
 
 export function Router() {
   const dispatch = useDispatch();
@@ -91,6 +95,20 @@ export function Router() {
           path: "/users",
           element: <Users />,
         },
+
+        {
+          path: "/affiliates",
+          element: <Affiliates />,
+        },
+        {
+          path: "/affiliatesBranches",
+          element: <AffiliatesBranches />,
+        },
+        {
+          path: "/affiliatesUsers",
+          element: <AffiliatesUsers />,
+        },
+
         {
           path: "/theme",
           element: <Themes />,
@@ -247,6 +265,17 @@ export function Router() {
           path: "/testseries",
           exact: true,
           element: <TestSeries />,
+        },
+        // remove this if required to remove.
+        // {
+        //   path: "/tests",
+        //   exact: true,
+        //   element: <Test />,
+        // },
+        {
+          path: "/mocktests",
+          exact: true,
+          element: <MockTests />,
         },
 
         // {
